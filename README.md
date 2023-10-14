@@ -1,7 +1,7 @@
 # Projeto Integrador IV do 4º Semestre - PUC-CAMPINAS
 
 ## WoodPecker 🐦
-WoodPecker é um assistente inteligente que visa a melhora da saúde de sua memória para otimizar seu aprendizado. Seja você um estudante autodidata ou alguém buscando reforço em tópicos específicos, WoodPecker é sua ferramenta confiável.
+WoodPecker é um assistente inteligente que visa a melhora da saúde de sua memória para otimizar seu aprendizado. Seja você um estudante autodidata ou alguém buscando aumentar sua capacidade de memória, WoodPecker é sua ferramenta confiável.
 
 ## Funcionalidades 🚀
 - **Login e Autenticação:** Acesso seguro através de um sistema robusto de login.
