@@ -21,6 +21,6 @@ WoodPecker é um assistente inteligente que visa a melhora da saúde de sua mem�
 - **Configurações:** Ajuste as configurações do aplicativo de acordo com suas preferências.
 
 ## Tecnologias 🛠
-- **Backend:** Java
+- **Backend:** Java, Javascript
 - **Banco de Dados:** MongoDB
 - **Frontend:** React, JavaScript
