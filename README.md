@@ -1,6 +1,6 @@
 # Projeto Integrador IV do 4º Semestre - PUC-CAMPINAS
 
-# WoodPecker 🐦
+## WoodPecker 🐦
 WoodPecker é uma plataforma avançada de estudos que utiliza inteligência artificial para otimizar seu aprendizado. Seja você um estudante autodidata ou alguém buscando reforço em tópicos específicos, WoodPecker é sua ferramenta confiável.
 
 ## Funcionalidades 🚀
