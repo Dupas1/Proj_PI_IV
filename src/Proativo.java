@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.*;
 
 public class Proativo {
-    public static void main (String[] args) throws IOException {
+    public static void main (String[] args){
         try{
             Socket conexao = new Socket("localhost",12345);
 
