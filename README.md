@@ -1,26 +1,8 @@
-# Projeto Integrador IV do 4º Semestre - PUC-CAMPINAS
+# React + Vite
 
-## WoodPecker 🐦
-WoodPecker é um assistente inteligente que visa a melhora da saúde de sua memória para otimizar seu aprendizado. Seja você um estudante autodidata ou alguém buscando aumentar sua capacidade de memória, WoodPecker é sua ferramenta confiável.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Funcionalidades 🚀
-- **Login e Autenticação:** Acesso seguro através de um sistema robusto de login.
+Currently, two official plugins are available:
 
-- **Home Dashboard:** Visualize sua progressão, tarefas pendentes e desempenho geral.
-
-- **Anotações:** Faça anotações interativas e organize-as em categorias.
-
-- **StudySpace:** Espaço dedicado para estudo com flashcards, revisões e quizzes.
-
-- **Rede Neural:** Uma rede neural integrada para personalizar e otimizar seu plano de estudos.
-
-- **Performance/Report Overview:** Relatórios detalhados sobre seu progresso e áreas que precisam de mais foco.
-
-- **Profile:** Personalize seu perfil, adicione uma foto e atualize seus detalhes.
-
-- **Configurações:** Ajuste as configurações do aplicativo de acordo com suas preferências.
-
-## Tecnologias 🛠
-- **Backend:** Java, Javascript
-- **Banco de Dados:** MongoDB
-- **Frontend:** React, JavaScript
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
