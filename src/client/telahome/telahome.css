@@ -1,0 +1,93 @@
+body{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}   
+hr{
+    width:auto;
+}
+.titles{
+    color: #C8C8C8;
+}
+h1{
+    font-size: medium;
+}
+img{
+    height: 300px;
+    width: 500px;
+    margin-top:5px ;
+}
+
+
+.all{
+    margin: 0 auto;
+    align-content: space-around;  
+}
+.containers{
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    padding: 5px;   
+}
+.container1{
+    background-color: #1A1A1A;
+    border-radius: 8px;
+    display: flex;
+    height: 500px;
+    width: 1400px; 
+    color: #A2A2A2;
+    padding: 15px;
+    margin: 10px 5px;
+}
+.container2{
+    background-color: #1A1A1A;
+    border-radius: 8px;
+    display: flex;
+    height: 400px;
+    width: 1400px; 
+    color: #A2A2A2;
+    padding: 15px;
+    margin: 10px 5px;
+}
+.flashCard{
+    align-content: space-around;
+    height: auto;
+}
+.flashCards{
+    background-color:  #272727;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    height: 87px;
+    width: auto;
+    margin: 5px auto;
+    flex-direction: column;
+    padding: 5px;
+}
+.flashCardsDicas{
+    background-color:  #272727;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    height: 87px;
+    width: auto;
+    margin: 20px auto;
+    flex-direction: column;
+    padding: 5px;
+}
+.footer{
+    border-radius: 8px 8px 0px 0px;
+    background: #1A1A1A;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-end;
+    height: auto;
+    justify-content: space-between;
+}
+.img{
+    height: 40px;
+    width: 40px;
+}
+.imgcenter{
+    padding-right: 100px;
+}
