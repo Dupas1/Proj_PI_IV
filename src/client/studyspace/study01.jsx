@@ -68,23 +68,72 @@ const Studyspace = () => {
                 <div className="testes-content">
                     <div className='testes-titulo'>Testes</div>
 
-                    <div className="teste-card">
-                        <div className="teste-name">Teste de MongoDB - Difícil</div>
+                    <div className="teste-card"> 
+                        <div className="teste-name">
+                        <img className= 'bolinhaimg' src='/public/bolinhaverde.png'>
+                        </img>
+                            Teste de MongoDB - Difícil
                         <div className="teste-duration">Aproximadamente 1h</div>
+                        </div>
                     </div>
 
+                    <br></br>
                     <div className="teste-card">
-                        <div className="teste-name">Teste de Cálculo - Fácil</div>
+                        <div className="teste-name">
+                        <img className= 'bolinhaimg' src='/public/bolinhaverde.png'>
+                        </img>Teste de Cálculo - Fácil
                         <div className="teste-duration">Aproximadamente 15 min</div>
+                        </div>
                     </div>
+                    <br></br>
 
                     <div className="teste-card">
-                        <div className="teste-name">Teste de Java - Médio</div>
+                        <div className="teste-name">
+                        <img className= 'bolinhaimg' src='/public/bolinhaverde.png'>
+                        </img>
+                        Teste de Java - Médio
                         <div className="teste-duration">Aproximadamente 30 min</div>
+                        </div>
                     </div>
                 </div>
             
         </div>
+
+        <footer className="footer">
+                <div className="imgesquerda"> 
+                <div><a href="">
+                    <img className="img" src="icone.config.png" alt="" />
+                </a></div>
+                <div><a href="">
+                    <img className="img" src="icone.perfil.png" alt="" />
+                </a></div>
+                <div><a href="">
+                    <img className="img" src="icone.lua.png" alt="" />
+                </a></div>
+                </div>
+                <div className="imgcenter">
+                    <div><a href="">
+                    <img className="img" src="icone.doc.png" alt="" />
+                </a></div>
+                    <div><a href="">
+                    <img className="img" src="icone.lista.png" alt="" />
+                </a></div>
+                    <div><a href="">
+                    <img className="img" src="icone.trevo.png" alt="" />
+                </a></div>
+                    <div><a href="">
+                    <img className="img" src="icone.bandeira.png" alt="" />
+                </a></div>
+                </div>
+                <div className="imgdireita">
+                <a href="">
+                    <img className="img" src="icone.wp.png" alt="" />
+                </a>
+                </div>
+            </footer>
+
+
+        
     </div>
     );
 }

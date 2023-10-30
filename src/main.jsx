@@ -11,8 +11,8 @@ class LoginPrincipal extends React.Component{
     render(){
         return(
             <div>
-                <Login01/>
-                <First/>
+               
+               
                 <Studyspace/>
             </div>
         )
