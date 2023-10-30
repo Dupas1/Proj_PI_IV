@@ -1,0 +1,118 @@
+body{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+.all{
+    margin: 0 ; 
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.containers{
+    margin: 0; 
+    padding: 10px;
+    flex: 1 auto;
+    display: grid;
+    grid-template-areas: 
+    "container1 container2"
+    "container1 container2" 
+    "container1 container2" 
+    "container1 container2" 
+    "container1 container2"
+    "container1 container3";
+    grid-auto-rows: minmax(80px, auto);
+}
+.container1{
+    grid-area: container1;
+    min-width: 200px;
+    background-color: #1A1A1A;
+    border-radius: 8px;
+    display: flex;
+    color: #A2A2A2;
+    padding: 15px;
+    margin: 10px 5px; 
+}
+.container2{
+    grid-area: container2;
+    min-width: 200px;
+    background-color: #1A1A1A;
+    border-radius: 8px;
+    display: flex;
+    color: #A2A2A2;
+    padding: 15px;
+    margin: 10px 5px;
+}
+.container3{
+    grid-area: container3;
+    min-width: 200px;
+    background-color: #1A1A1A;
+    border-radius: 8px;
+    display: flex;
+    color: #A2A2A2;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 10px 5px;
+}
+.footer{
+    width: 100%;
+    min-height: 50px;
+    border-radius: 8px 8px 0px 0px;
+    background: #1A1A1A;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+@media(max-width:590px){
+    .containers{
+        grid-template-areas: 
+        "container1 container1 "
+        "container2 container2 "
+        "container3 container3 ";
+    }
+}
+
+@media(max-width:530px){
+    .imgcenter{
+        padding-right: 0px !important;
+    }
+}
+.img{
+    height: 40px;
+    width: 40px;
+}
+.imgesquerda{
+    display: flex;
+    flex-wrap: wrap;
+}
+.imgcenter{
+    padding-right: 100px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.imgdireita{
+    display: flex;
+    flex-wrap: wrap;
+}   
+.titles{
+    color: #C8C8C8;
+}
+h1{
+    font-size: medium;
+}
+.para_hoje{
+    min-width: 100% ;
+    height: auto;
+}
+.progresso_geral{
+    min-width: 100% ;
+    height: auto;
+}
+.ideias{
+    min-width: 100% ;
+    height: auto;
+}
