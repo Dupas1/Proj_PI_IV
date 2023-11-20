@@ -5,7 +5,7 @@ export default function Prof(){
             <div className="container1">
                 <div className="imgperfil">
                     <img src="Ellipse 37.png" alt="" className="imgeli"/>
-                    <img src="person.png" alt="" class="image-overlay"/>
+                    <img src="person.png" alt="" className="image-overlay"/>
                 </div>
                 <br />
                 <div className="dados">
