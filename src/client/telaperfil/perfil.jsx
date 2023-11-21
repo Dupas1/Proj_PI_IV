@@ -2,44 +2,44 @@ import { Link } from 'react-router-dom';
 
 export default function Prof(){
     return(
-        <div className="all">
-        <section className="containers">
-            <div className="container1">
-                <div className="imgperfil">
-                    <img src="Ellipse 37.png" alt="" className="imgeli"/>
-                    <img src="person.png" alt="" className="image-overlay"/>
+        <div className="allp">
+        <section className="containersp">
+            <div className="container1p">
+                <div className="imgperfilp">
+                    <img src="Ellipse 37.png" alt="" className="imgelip"/>
+                    <img src="person.png" alt="" className="image-overlayp"/>
                 </div>
                 <br />
-                <div className="dados">
-                    <h1>Nome: </h1>
+                <div className="dadosp">
+                    <h1 className="h1p">Nome: </h1>
                     <p></p>
                 </div>
-                <div className="dados">
-                    <h1>Email: </h1>
+                <div className="dadosp">
+                    <h1 className="h1p">Email: </h1>
                     <p></p>
                 </div>
-                <div className="dados">
-                    <h1>Telefone: </h1>
+                <div className="dadosp">
+                    <h1 className="h1p">Telefone: </h1>
                     <p></p>
                 </div>
-                <div className="dados">
-                    <h1>Genêro: </h1>
+                <div className="dadosp">
+                    <h1 className="h1p">Genêro: </h1>
                     <p></p>
                 </div>
-                <div className="dados">
-                    <h1>Data de entrada: </h1>
+                <div className="dadosp">
+                    <h1 className="h1p">Data de entrada: </h1>
                     <p></p>
                 </div>
-                <div className="buttons">
-                <button className="button1">
-                    <h2>Editar</h2>
+                <div className="buttonsp">
+                <button className="button1p">
+                    <h2 className="h2p">Editar</h2>
                 </button>
-                <button className="button2">
+                <button className="button2p">
                     <h2>Gerenciar conta</h2>
                 </button>
                 </div>
             </div>
-            <div className="container2">
+            <div className="container2p">
                 
             </div>
         </section>

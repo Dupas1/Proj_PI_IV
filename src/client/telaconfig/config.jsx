@@ -2,78 +2,78 @@ import { Link } from 'react-router-dom';
 
 export default function Config() {
     return (
-        <div className="all">
-            <section className="containers">
-                <div className="container1">
-                    <div className="configuracoes">
+        <div className="allc">
+            <section className="containersc">
+                <div className="container1c">
+                    <div className="configuracoesc">
                         <h1>Configurações</h1>
                     </div>
-                    <div className="ap">
-                        <div className="aparencia">
+                    <div className="apc">
+                        <div className="aparenciac">
                             <h1>Aparência</h1>
-                            <p>Permite aos usuários personalizar a interface do app de acordo com suas preferências visuais. Isso pode incluir a escolha entre um modo claro e escuro, alterar o esquema de cores ou ajustar o tamanho e o estilo da fonte para uma leitura mais confortável.</p>
+                            <p className="pc">Permite aos usuários personalizar a interface do app de acordo com suas preferências visuais. Isso pode incluir a escolha entre um modo claro e escuro, alterar o esquema de cores ou ajustar o tamanho e o estilo da fonte para uma leitura mais confortável.</p>
                         </div>
-                        <div className="modos">
-                            <label for="modo_de_cor"></label>
-                            <select id="modo_de_cor" name="modo_de_cor">
+                        <div className="modosc">
+                            <label for="modo_de_corc"></label>
+                            <select id="modo_de_corc" name="modo_de_cor">
                                 <option value="Escuro">Escuro</option>
                                 <option value="Claro">Claro</option>
                             </select>
                         </div>
                     </div>
-                    <div className="ap">
-                        <div className="notificacoes">
+                    <div className="apc">
+                        <div className="notificacoesc">
                             <h1>Ativar notificações</h1>
-                            <p>Dá aos usuários a opção de receber notificações em tempo real sobre atualizações, novos conteúdos, lembretes ou qualquer outro alerta relevante do app. Ao ativar essa funcionalidade, o usuário pode se manter informado e engajado com o conteúdo e as atividades propostas.</p>
+                            <p className="pc">Dá aos usuários a opção de receber notificações em tempo real sobre atualizações, novos conteúdos, lembretes ou qualquer outro alerta relevante do app. Ao ativar essa funcionalidade, o usuário pode se manter informado e engajado com o conteúdo e as atividades propostas.</p>
                         </div>
-                        <div className="modos">
-                            <label for="modo"></label>
-                            <select id="modo" name="modo">
+                        <div className="modosc">
+                            <label for="modoc"></label>
+                            <select id="modoc" name="modo">
                                 <option value="Ativado">Ativado</option>
                                 <option value="Desativado">Desativado</option>
                             </select>
                         </div>
                     </div>
-                    <div className="ap">
-                        <div className="linguagem">
+                    <div className="apc">
+                        <div className="linguagemc">
                             <h1>Linguagem</h1>
-                            <p>Permite que os usuários selecionem o idioma de sua preferência para a interface e o conteúdo do app. Isso garante que o usuário tenha uma experiência mais personalizada e compreensível, especialmente em um contexto global onde os usuários podem vir de diferentes regiões linguísticas.</p>
+                            <p className="pc">Permite que os usuários selecionem o idioma de sua preferência para a interface e o conteúdo do app. Isso garante que o usuário tenha uma experiência mais personalizada e compreensível, especialmente em um contexto global onde os usuários podem vir de diferentes regiões linguísticas.</p>
                         </div>
-                        <div className="modos">
-                            <label for="Lingua"></label>
-                            <select id="Lingua" name="Lingua">
+                        <div className="modosc">
+                            <label for="Linguac"></label>
+                            <select id="Linguac" name="Lingua">
                                 <option value="Português - Brasil">Português - Brasil</option>
                                 <option value="Ingles - EUA">Ingles - EUA</option>
                             </select>
                         </div>
                     </div>
-                    <div className="ap">
-                        <div className="mestudo">
+                    <div className="apc">
+                        <div className="mestudoc">
                             <h1>Modo de estudo</h1>
-                            <p>Esta funcionalidade pode oferecer aos usuários opções de modos de estudo:</p>
-                            <h2>Foco Intenso:</h2>
-                            <p>Este modo é projetado para aqueles que desejam mergulhar profundamente em seus estudos. Ao minimizar distrações e notificações, ele cria um ambiente propício para a concentração. Os conteúdos fornecidos são mais extensos e complexos, permitindo que o usuário explore os tópicos em detalhes. É ideal para sessões de estudo prolongadas onde o objetivo é compreender e assimilar informações intrincadas.</p>
-                            <h2>Rapidez:</h2>
-                            <p>Desenvolvido para quem está sempre em movimento, este modo foca em revisões curtas e frequentes. Com conteúdos mais diretos e concisos, permite que os usuários absorvam informações essenciais em pouco tempo. É perfeito para pessoas que têm agendas lotadas e precisam otimizar seu tempo de estudo, guardando energia mental.</p>
+                            <p className="pc">Esta funcionalidade pode oferecer aos usuários opções de modos de estudo:</p>
+                            <h1>Foco Intenso:</h1>
+                            <p className="pc">Este modo é projetado para aqueles que desejam mergulhar profundamente em seus estudos. Ao minimizar distrações e notificações, ele cria um ambiente propício para a concentração. Os conteúdos fornecidos são mais extensos e complexos, permitindo que o usuário explore os tópicos em detalhes. É ideal para sessões de estudo prolongadas onde o objetivo é compreender e assimilar informações intrincadas.</p>
+                            <h1>Rapidez:</h1>
+                            <p className="pc">Desenvolvido para quem está sempre em movimento, este modo foca em revisões curtas e frequentes. Com conteúdos mais diretos e concisos, permite que os usuários absorvam informações essenciais em pouco tempo. É perfeito para pessoas que têm agendas lotadas e precisam otimizar seu tempo de estudo, guardando energia mental.</p>
                         </div>
-                        <div className="modos">
-                            <label for="Foco"></label>
-                            <select id="Foco" name="Foco">
+                        <div className="modosc">
+                            <label for="Fococ"></label>
+                            <select id="Fococ" name="Foco">
                                 <option value="Foco moderado">Foco moderado</option>
                                 <option value="Foco intenso">Foco intenso</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div className="container2">
-                    <div className="ajuda">
+                <div className="container2c">
+                    <div className="ajudac">
                         <h3>Ajuda</h3>
                     </div>
-                    <div className="chat">
+                    <div className="chatc">
                         <h4>Chat</h4>
                     </div>
                     <hr />
-                    <div className="duvidas">
+                    <div className="duvidasc">
                         <h4>Dúvidas frequentes</h4>
                     </div>
                 </div>

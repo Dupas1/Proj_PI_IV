@@ -5,14 +5,14 @@ body{
     padding: 0;
     background-color: black;
 }
-.all{
+.allth{
     margin: 0 ; 
     padding: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
-.containers{
+.containersth{
     margin: 0; 
     padding: 10px;
     flex: 1 auto;
@@ -26,7 +26,7 @@ body{
     "container1 container3";
     grid-auto-rows: minmax(80px, auto);
 }
-.container1{
+.container1th{
     grid-area: container1;
     min-width: 200px;
     background-color: #1A1A1A;
@@ -36,7 +36,7 @@ body{
     padding: 15px;
     margin: 10px 5px; 
 }
-.container2{
+.container2th{
     grid-area: container2;
     min-width: 200px;
     background-color: #1A1A1A;
@@ -46,7 +46,7 @@ body{
     padding: 15px;
     margin: 10px 5px;
 }
-.container3{
+.container3th{
     grid-area: container3;
     min-width: 200px;
     background-color: #1A1A1A;
@@ -68,7 +68,7 @@ body{
     justify-content: space-between;
 }
 @media(max-width:590px){
-    .containers{
+    .containersth{
         grid-template-areas: 
         "container1 container1 "
         "container2 container2 "
@@ -98,21 +98,27 @@ body{
     display: flex;
     flex-wrap: wrap;
 }   
-.titles{
+.titlesth{
     color: #C8C8C8;
+    font-size: 30px;
+    margin: 0;
+}
+.dtitlesth{
+    color: #C8C8C8;
+    font-size: 15px;
 }
 h1{
     font-size: medium;
 }
-.para_hoje{
+.para_hojeth{
     min-width: 100% ;
     height: auto;
 }
-.progresso_geral{
+.progresso_geralth{
     min-width: 100% ;
     height: auto;
 }
-.ideias{
+.ideiasth{
     min-width: 100% ;
     height: auto;
 }

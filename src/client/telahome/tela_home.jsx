@@ -5,32 +5,32 @@ import { Link } from 'react-router-dom';
 
 export default function First() {
     return (
-        <div className="all">
-            <section className="containers"
-            ><div className="container1">
-                    <div className="para_hoje">
-                        <h1 className="titles">Para Hoje</h1>
+        <div className="allth">
+            <section className="containersth"
+            ><div className="container1th">
+                    <div className="para_hojeth">
+                        <h1 className="titlesth">Para Hoje</h1>
                         <p1>Estimativa: 1h</p1>
                         <hr />
                         <p1>Itens</p1>
-                        <div className="flashCard">
+                        <div className="flashCardth">
                         </div>
                     </div>
                 </div>
-                <div className="container2">
-                    <div className="progresso_geral">
-                        <h1 className="titles">Progresso Geral</h1>
+                <div className="container2th">
+                    <div className="progresso_geralth">
+                        <h1 className="titlesth">Progresso Geral</h1>
                         <br />
                         <hr />
                         <p1>Taxa de acerto</p1>
-                        <div className="flashCard">
+                        <div className="flashCardth">
                         </div>
                     </div>
                 </div>
-                <div className="container3">
-                    <div className="ideias">
-                        <h1 className="titles">Dica do Dia</h1>
-                        <div className="flashCard">
+                <div className="container3th">
+                    <div className="ideiasth">
+                        <h1 className="dtitlesth">Dica do Dia</h1>
+                        <div className="flashCardth">
                         </div>
                     </div>
                 </div>

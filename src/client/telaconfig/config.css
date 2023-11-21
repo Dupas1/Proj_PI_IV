@@ -4,14 +4,14 @@ body{
     padding: 0;
     background-color: black;
 }
-.all{
+.allc{
     margin: 0 ; 
     padding: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
-.containers{
+.containersc{
     margin: 0; 
     padding: 10px;
     flex: 1 auto;
@@ -21,7 +21,7 @@ body{
     "container1 container1" 
     "container2 container2";
 }
-.container1{
+.container1c{
     grid-area: container1;
     min-width: 200px;
     background-color: #1A1A1A;
@@ -29,7 +29,7 @@ body{
     color: #A2A2A2;
     padding: 15px;
     margin: 10px 5px; 
-    max-height: 315px;
+    max-height: 305px;
     overflow-y: scroll;
     &::-webkit-scrollbar {
         width: 6px;
@@ -39,12 +39,12 @@ body{
         border-radius: 6px; 
     }
 }
-.ap{
+.apc{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.container2{
+.container2c{
     grid-area: container2;
     min-width: 200px;
     background-color: #1A1A1A;
@@ -102,12 +102,14 @@ h2{
     font-weight: 700;
     line-height: 14px; 
 }
-p{
+.pc{
     color: #A2A2A2;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 10px;
     font-style: normal;
     width: 70%;
+    overflow-wrap: break-word;
+  word-break: break-all;
 }
 h3{
     color: #A2A2A2;
