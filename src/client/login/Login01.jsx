@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import './login.css';
+import { Link } from 'react-router-dom';
 
 
 export default function Login01() {
@@ -54,7 +55,9 @@ export default function Login01() {
                             />
                         </div>
                         <div className="button-group">
-                            <button type="submit">ENTRAR</button>
+                            <Link to="/telahome">
+                                <button type="submit">ENTRAR</button>
+                            </Link>
                             <button type="button" onClick={mensagemtemporaria}>CADASTRAR-SE</button>
                         </div>
                     </form>

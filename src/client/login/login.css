@@ -40,7 +40,7 @@ body, html {
     height: 22px;
     position: absolute;
     top: 228px;
-    left: 772px;
+    left: 1100px;
 }
 
 .greeting-2 {
@@ -54,7 +54,7 @@ body, html {
     height: 17px;
     position: absolute;
     top: 258px;
-    left: 772px;
+    left: 1100px;
 }
 
 
@@ -63,7 +63,7 @@ body, html {
     height: 110px;
     position: absolute; 
     top: 64px;
-    left: 733px;
+    left: 1100px;
     padding: 10px;
 }
 
@@ -73,7 +73,7 @@ body, html {
     align-items: center; 
     gap: 24px; 
     position: absolute;
-    left: 768px;
+    left: 1100px;
     top: 383px;
 }
 
