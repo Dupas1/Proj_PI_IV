@@ -6,9 +6,9 @@ import java.util.*;
 
 public class SupervisoraDeConexao extends Thread
 {
-    private double              valor=0;
-    private Parceiro            usuario;
-    private Socket              conexao;
+    private double valor=0;
+    private Parceiro usuario;
+    private Socket conexao;
     private ArrayList<Parceiro> usuarios;
 
     public SupervisoraDeConexao(Socket conexao, ArrayList<Parceiro> usuarios) throws Exception
@@ -25,7 +25,6 @@ public class SupervisoraDeConexao extends Thread
 
     public void run ()
     {
-
         ObjectOutputStream transmissor;
         try
         {
@@ -59,10 +58,7 @@ public class SupervisoraDeConexao extends Thread
 
         try
         {
-            this.usuario =
-            new Parceiro (this.conexao,
-                          receptor,
-                          transmissor);
+            this.usuario = new Parceiro (this.conexao, receptor, transmissor);
         }
         catch (Exception erro)
         {} // sei que passei os parametros corretos
@@ -75,9 +71,9 @@ public class SupervisoraDeConexao extends Thread
             }
 
 
-            for(;;)
+            for(;;) // essa parte sera alterada para a contrução do servidor
             {
-                Comunicado comunicado = this.usuario.envie ();
+                Comunicado comunicado = this.usuario.envie (); // recebe do cliente
 
                 if (comunicado==null)
                     return;

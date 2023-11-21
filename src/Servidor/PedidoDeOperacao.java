@@ -1,5 +1,6 @@
 package Servidor;
 
+//para receber do cliente
 public class PedidoDeOperacao extends Comunicado
 {
     private char   operacao;

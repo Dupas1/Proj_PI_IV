@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Servidor
 {
-	public static String PORTA = "3000";
+	public static final String PORTA = "3000";
 	
     public static void main (String[] args)
     {
@@ -24,8 +24,7 @@ public class Servidor
         AceitadoraDeConexao aceitadoraDeConexao=null;
         try
         {
-            aceitadoraDeConexao =
-            new AceitadoraDeConexao (porta, usuarios);
+            aceitadoraDeConexao = new AceitadoraDeConexao (porta, usuarios);
             aceitadoraDeConexao.start();
         }
         catch (Exception erro)

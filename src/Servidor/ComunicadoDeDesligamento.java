@@ -1,4 +1,5 @@
 package Servidor;
 
+//servidor manda pro cliente
 public class ComunicadoDeDesligamento extends Comunicado
-{}
+{}//cria um objeto que avisa o cliente o desligamento do servidor

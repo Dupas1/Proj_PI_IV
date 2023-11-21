@@ -10,7 +10,7 @@ public class Cliente
 
 	public static void main (String[] args)
 	{
-        if (args.length>2)
+        if (args.length>2) //terminal receber mais de dois args
         {
             System.err.println ("Uso esperado: java Cliente [HOST [PORTA]]\n");
             return;
@@ -23,10 +23,10 @@ public class Cliente
             int    porta= Cliente.PORTA;
 
             if (args.length>0)
-                host = args[0];
+                host = args[0];// primeira coisa do args no terminal q serial o "localhost"
 
             if (args.length==2)
-                porta = Integer.parseInt(args[1]);
+                porta = Integer.parseInt(args[1]);//segunda coisa do terminal q seria a porta
 
             conexao = new Socket (host, porta);
         }
@@ -70,7 +70,7 @@ public class Cliente
         }
         catch (Exception erro)
         {
-            System.err.println ("Indique o servidor e a porta corretos!\n");
+            System.err.println ("Indique o servidor e a porta corretas!\n");
             return;
         }
 
@@ -86,20 +86,20 @@ public class Cliente
 
         char opcao=' ';
         do
-        {
+		{
             System.out.print ("Sua opcao (+, -, *, /, =, [T]erminar)? ");
 
             try
             {
 				opcao = Character.toUpperCase(Teclado.getUmChar());
-		    }
+			 }
 		    catch (Exception erro)
 		    {
 				System.err.println ("Opcao invalida!\n");
 				continue;
 			}
 
-			if ("+-*/=T".indexOf(opcao)==-1)
+			if ("+-*/=T".indexOf(opcao)==-1)// se retornar -1 é pq nn achou nenhuma dessas opções
 		    {
 				System.err.println ("Opcao invalida!\n");
 				continue;
@@ -108,7 +108,7 @@ public class Cliente
 			try
 			{
 				double valor=0;
-				if ("+-*/".indexOf(opcao)!=-1)
+				if ("+-*/".indexOf(opcao)!=-1) //se não der -1
 				{
 					System.out.print ("Valor? ");
 					try

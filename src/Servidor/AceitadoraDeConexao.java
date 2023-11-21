@@ -48,8 +48,7 @@ public class AceitadoraDeConexao extends Thread
             SupervisoraDeConexao supervisoraDeConexao=null;
             try
             {
-                supervisoraDeConexao =
-                new SupervisoraDeConexao (conexao, usuarios);
+                supervisoraDeConexao = new SupervisoraDeConexao (conexao, usuarios);
             }
             catch (Exception erro)
             {} // sei que passei parametros corretos para o construtor

@@ -1,5 +1,6 @@
 package Servidor;
 
+//servidor manda pro cliente
 public class Resultado extends Comunicado
 {
     private double valorResultante;
