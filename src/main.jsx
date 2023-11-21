@@ -1,25 +1,14 @@
-/* eslint-disable react/no-deprecated */
-import React from "react";
-import ReactDOM from "react-dom";
-import Login01 from './client/login/Login01'; 
-import Studyspace from "./client/studyspace/study01";
-import First from './client/telahome/tela_home'; 
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import "./client/telahome/telahome.css"
+import "./client/telaconfig/config.css"
+import "./client/telaperfil/perfil.css"
+import "./client/login/login.css"
+import "./client/studyspace/study.css"
 
-
-
-class LoginPrincipal extends React.Component{
-    render(){
-        return(
-            <div>
-               <Login01/>
-               <Studyspace/> 
-               <First/>
-
-            
-            </div>
-        )
-    }
-}
-
-
-ReactDOM.render(<LoginPrincipal/>, document.getElementById('root'));
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
