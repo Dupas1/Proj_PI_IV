@@ -29,6 +29,11 @@ body{
     color: #A2A2A2;
     padding: 15px;
     margin: 10px 5px; 
+    display: grid;
+    grid-template-areas: 
+    ""
+    "";
+    grid-auto-columns: minmax(80px, auto);
 }
 .imgperfilp{
     display: flex;
@@ -40,12 +45,13 @@ body{
 }
 .dadosp{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
 }
 .buttonsp{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
 }
 .button1p{
@@ -56,7 +62,6 @@ body{
     height: 30px;
     justify-content: center;
     align-items: center;
-    margin: 5px 5px;
     cursor: pointer;
 }
 .button2p{
@@ -104,6 +109,32 @@ body{
         padding-right: 0px !important;
     }
 }
+@media(min-height:850px){
+    .button1p{
+        height: 50px;
+    }
+    .button2p{
+        height: 50px;
+    }
+    .h1p{
+        font-size: 20px !important;
+    }
+    .h2p{
+        font-size: 24px !important;
+    }
+    h2{
+        font-size: 24px !important;
+    }
+    .imgelip{
+        height: 300px !important;
+    width: 300px !important;
+    }
+    .image-overlayp{
+        height: 172px !important;
+    width: 172px !important;
+    padding-top: 60px !important;
+    }
+}
 .img{
     height: 40px;
     width: 40px;
@@ -128,6 +159,7 @@ font-size: 12px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
+margin: 0;
 }
 p{
     color: #A2A2A2;

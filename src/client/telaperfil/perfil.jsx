@@ -9,24 +9,15 @@ export default function Prof(){
                     <img src="Ellipse 37.png" alt="" className="imgelip"/>
                     <img src="person.png" alt="" className="image-overlayp"/>
                 </div>
-                <br />
                 <div className="dadosp">
                     <h1 className="h1p">Nome: </h1>
                     <p></p>
-                </div>
-                <div className="dadosp">
                     <h1 className="h1p">Email: </h1>
                     <p></p>
-                </div>
-                <div className="dadosp">
                     <h1 className="h1p">Telefone: </h1>
                     <p></p>
-                </div>
-                <div className="dadosp">
                     <h1 className="h1p">Genêro: </h1>
                     <p></p>
-                </div>
-                <div className="dadosp">
                     <h1 className="h1p">Data de entrada: </h1>
                     <p></p>
                 </div>
@@ -35,7 +26,7 @@ export default function Prof(){
                     <h2 className="h2p">Editar</h2>
                 </button>
                 <button className="button2p">
-                    <h2>Gerenciar conta</h2>
+                    <h2 >Gerenciar conta</h2>
                 </button>
                 </div>
             </div>
