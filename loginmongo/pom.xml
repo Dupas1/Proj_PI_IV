@@ -14,7 +14,7 @@
 	<name>loginmongo</name>
 	<description>Login Spring Boot MongoDB</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
