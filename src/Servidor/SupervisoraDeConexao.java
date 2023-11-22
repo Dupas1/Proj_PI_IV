@@ -6,7 +6,8 @@ import java.util.*;
 
 public class SupervisoraDeConexao extends Thread
 {
-    private double valor=0;
+    private int option=0;
+    private String dificuldade;
     private Parceiro usuario;
     private Socket conexao;
     private ArrayList<Parceiro> usuarios;
@@ -29,20 +30,19 @@ public class SupervisoraDeConexao extends Thread
         try
         {
             transmissor =
-            new ObjectOutputStream(
-            this.conexao.getOutputStream());
+                    new ObjectOutputStream(
+                            this.conexao.getOutputStream());
         }
         catch (Exception erro)
         {
             return;
         }
-        
+
         ObjectInputStream receptor=null;
         try
         {
             receptor=
-            new ObjectInputStream(
-            this.conexao.getInputStream());
+                    new ObjectInputStream(this.conexao.getInputStream());
         }
         catch (Exception err0)
         {
@@ -52,7 +52,7 @@ public class SupervisoraDeConexao extends Thread
             }
             catch (Exception falha)
             {} // so tentando fechar antes de acabar a thread
-            
+
             return;
         }
 
@@ -77,31 +77,32 @@ public class SupervisoraDeConexao extends Thread
 
                 if (comunicado==null)
                     return;
-                else if (comunicado instanceof PedidoDeOperacao)
+                else if (comunicado instanceof PedidoDeEscolha)
                 {
-					PedidoDeOperacao pedidoDeOperacao = (PedidoDeOperacao)comunicado;
-					
-					switch (pedidoDeOperacao.getOperacao())
-					{
-						case '+':
-						    this.valor += pedidoDeOperacao.getValor();
-						    break;
-						    
-						case '-':
-						    this.valor -= pedidoDeOperacao.getValor();
-						    break;
-						    
-						case '*':
-						    this.valor *= pedidoDeOperacao.getValor();
-						    break;
-						    
-						case '/':
-						    this.valor /= pedidoDeOperacao.getValor();
+                    PedidoDeEscolha pedidoDeEscolha = (PedidoDeEscolha)comunicado;
+
+                    switch (pedidoDeEscolha.getOption())
+                    {
+                        case 1:
+                            this.option = pedidoDeEscolha.getOption();
+                            this.dificuldade = pedidoDeEscolha.getDificuldade();
+                            break;
+
+                        case 2:
+                            this.option = pedidoDeEscolha.getOption();
+                            this.dificuldade = pedidoDeEscolha.getDificuldade();;
+                            break;
+
+                        case 3:
+                            this.option = pedidoDeEscolha.getOption();
+                            this.dificuldade = pedidoDeEscolha.getDificuldade();;
+                            break;
+
                     }
                 }
-                else if (comunicado instanceof PedidoDeResultado)
+                else if (comunicado instanceof PedidoDeDificuldade)
                 {
-                    this.usuario.receba (new Resultado (this.valor));
+                    this.usuario.receba (new Dificuldade (this.dificuldade));
                 }
                 else if (comunicado instanceof PedidoParaSair)
                 {

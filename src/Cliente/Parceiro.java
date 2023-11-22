@@ -89,4 +89,5 @@ public class Parceiro
             throw new Exception ("Erro de desconexao");
         }
     }
+
 }

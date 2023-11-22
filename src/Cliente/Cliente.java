@@ -84,54 +84,66 @@ public class Cliente
 		
         tratadoraDeComunicadoDeDesligamento.start();
 
-        char opcao=' ';
+        int option=0;
         do
 		{
-            System.out.print ("Sua opcao (+, -, *, /, =, [T]erminar)? ");
+            System.out.print ("Sua opção (1:Facíl , 2:Médio , 3:Difícil , 4:Encerra o servidor)? ");
 
             try
             {
-				opcao = Character.toUpperCase(Teclado.getUmChar());
-			 }
+				option = Teclado.getUmInt();
+			}
 		    catch (Exception erro)
 		    {
-				System.err.println ("Opcao invalida!\n");
-				continue;
+				if (option > 4 || option<1){
+					System.err.println ("Opcao invalida!\n");
+					continue;
+				}
 			}
 
-			if ("+-*/=T".indexOf(opcao)==-1)// se retornar -1 é pq nn achou nenhuma dessas opções
-		    {
-				System.err.println ("Opcao invalida!\n");
-				continue;
-			}
+			try {
+				if (option <= 3 || option >= 1) {
+					if (option == 1) {
 
-			try
-			{
-				double valor=0;
-				if ("+-*/".indexOf(opcao)!=-1) //se não der -1
-				{
-					System.out.print ("Valor? ");
-					try
-					{
-						valor = Teclado.getUmDouble();
-						System.out.println();
-						
-						if (opcao=='/' && valor==0)
+						try//inplementaçao da data
 						{
-							System.err.println ("Valor invalido!\n");
+							System.out.println(1);
+
+						} catch (Exception erro) {
+							System.err.println("Valor invalido!\n");
 							continue;
 						}
-					}
-					catch (Exception erro)
-					{
-						System.err.println ("Valor invalido!\n");
-						continue;
-					}
 
+						servidor.receba(new PedidoDeEscolha(option));
+					} else if (option == 2) {
 
-					servidor.receba (new PedidoDeOperacao (opcao,valor));
+						try//inplementaçao da data
+						{
+							System.out.println(2);
+
+						} catch (Exception erro) {
+							System.err.println("Valor invalido!\n");
+							continue;
+						}
+
+						servidor.receba(new PedidoDeEscolha(option));
+					} else if (option == 3) {
+
+						try//inplementaçao da data
+						{
+							System.out.println(3);
+
+						} catch (Exception erro) {
+							System.err.println("Valor invalido!\n");
+							continue;
+						}
+
+						servidor.receba(new PedidoDeEscolha(option));
+					}
 				}
-				else if (opcao=='=')
+
+				/*
+				else if (option=='=')
 				{
 					servidor.receba (new PedidoDeResultado ());
 					Comunicado comunicado = null;
@@ -142,7 +154,7 @@ public class Cliente
 					while (!(comunicado instanceof Resultado));
 					Resultado resultado = (Resultado)servidor.envie ();
 					System.out.println ("Resultado atual: "+resultado.getValorResultante()+"\n");
-				}
+				}*/
 			}
 			catch (Exception erro)
 			{
@@ -151,8 +163,8 @@ public class Cliente
 				System.err.println ("Caso o erro persista, termine o programa");
 				System.err.println ("e volte a tentar mais tarde!\n");
 			}
-        }
-        while (opcao != 'T');
+
+        }while (option != '4'); //pensar na logistica de encerrar o servidor
 
 		try
 		{
