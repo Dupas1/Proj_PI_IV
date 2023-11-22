@@ -4,7 +4,7 @@ import Login from "./client/login/Login01.jsx"
 import Studyspace from "./client/studyspace/study01.jsx"
 import Config from "./client/telaconfig/config.jsx"
 import First from "./client/telahome/tela_home.jsx"
-import FlashCard from "./client/telafalshcard/flash_card.jsx"
+import FlashCard from "./client/telaflashcard/flash_card.jsx"
 
 function App(){
   return(

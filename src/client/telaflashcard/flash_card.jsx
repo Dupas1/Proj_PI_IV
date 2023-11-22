@@ -1,12 +1,25 @@
-import './flash_cards.css';
+import { Link } from 'react-router-dom';
 
 export default function FlashCard(){
     return(
         <div className="allfc">
-            <section className="containersfc"
-            ><div className="container1fc">
-                    
+            <section className="containersfc">
+            <div className="container1fc">
+                <div className="header">
+                <div className="para_hojefc">
+                    <a href="">
+                        <img className="imgvoltar"src="Voltar.PNG" alt="" />
+                    </a>
+                    <h1 className="titlesfc">Mongo DB</h1>
                 </div>
+                <div className="buttonfc">
+                    <button className="button2fc">
+                        <h2 >Adicionar FlashCard</h2>
+                    </button>
+                </div> 
+                </div> 
+                <hr />    
+            </div>
             </section>
             <footer className="footer">
                 <div className="imgesquerda">
