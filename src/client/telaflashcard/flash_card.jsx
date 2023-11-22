@@ -1,3 +1,5 @@
+import './flash_cards.css';
+
 export default function FlashCard(){
     return(
         <div className="allfc">
@@ -31,9 +33,9 @@ export default function FlashCard(){
                         </Link>
                     </div>
                     <div>
-                        <a href="">
+                        <Link to = "/flashCard">
                             <img className="img" src="icone.lista.png" alt="" />
-                        </a>
+                        </Link>
                     </div>
                     <div>
                         <a href="">

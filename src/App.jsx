@@ -4,6 +4,7 @@ import Login from "./client/login/Login01.jsx"
 import Studyspace from "./client/studyspace/study01.jsx"
 import Config from "./client/telaconfig/config.jsx"
 import First from "./client/telahome/tela_home.jsx"
+import FlashCard from "./client/telafalshcard/flash_card.jsx"
 
 function App(){
   return(
@@ -15,6 +16,7 @@ function App(){
                 <Route path='/telaconfig' element = {<Config />} />
                 <Route path='/telahome' element = {<First />} />
                 <Route path='/profile' element = {<Prof />} />
+                <Route path='/flashCard' element = {<FlashCard/>}/>
             </Routes>
         </Router>
     </div>

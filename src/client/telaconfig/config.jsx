@@ -103,9 +103,9 @@ export default function Config() {
                         </Link>
                     </div>
                     <div>
-                        <a href="">
+                        <Link to="/flashCard">
                             <img className="img" src="icone.lista.png" alt="" />
-                        </a>
+                        </Link>
                     </div>
                     <div>
                         <a href="">
