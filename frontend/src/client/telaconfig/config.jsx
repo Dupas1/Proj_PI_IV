@@ -47,23 +47,6 @@ export default function Config() {
                             </select>
                         </div>
                     </div>
-                    <div className="apc">
-                        <div className="mestudoc">
-                            <h1>Modo de estudo</h1>
-                            <p className="pc">Esta funcionalidade pode oferecer aos usuários opções de modos de estudo:</p>
-                            <h1>Foco Intenso:</h1>
-                            <p className="pc">Este modo é projetado para aqueles que desejam mergulhar profundamente em seus estudos. Ao minimizar distrações e notificações, ele cria um ambiente propício para a concentração. Os conteúdos fornecidos são mais extensos e complexos, permitindo que o usuário explore os tópicos em detalhes. É ideal para sessões de estudo prolongadas onde o objetivo é compreender e assimilar informações intrincadas.</p>
-                            <h1>Rapidez:</h1>
-                            <p className="pc">Desenvolvido para quem está sempre em movimento, este modo foca em revisões curtas e frequentes. Com conteúdos mais diretos e concisos, permite que os usuários absorvam informações essenciais em pouco tempo. É perfeito para pessoas que têm agendas lotadas e precisam otimizar seu tempo de estudo, guardando energia mental.</p>
-                        </div>
-                        <div className="modosc">
-                            <label for="Fococ"></label>
-                            <select id="Fococ" name="Foco">
-                                <option value="Foco moderado">Foco moderado</option>
-                                <option value="Foco intenso">Foco intenso</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
                 <div className="container2c">
                     <div className="ajudac">
