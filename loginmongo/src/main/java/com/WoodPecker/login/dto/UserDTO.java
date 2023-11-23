@@ -8,22 +8,26 @@ public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String id;
-	private String nome;
-	private String idade;
-	private String cpf;
+	private String name;
+	private String gender;
 	private String email;
-	private String senha;
+	private String psw;
+	private String phone;
+	private String entryDate;
 	
 	public UserDTO() {}
 	
 	public UserDTO(User x) {
 		id = x.getId();
-		nome = x.getNome();
-		idade = x.getIdade();
-		cpf = x.getCpf();
+		name = x.getName();
+		gender = x.getGender();
 		email = x.getEmail();
-		senha = x.getSenha();
+		psw = x.getPsw();
+		phone = x.getPhone();
+		entryDate = x.getEntryDate();
 	}
+
+	
 
 	public String getId() {
 		return id;
@@ -33,28 +37,20 @@ public class UserDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getIdade() {
-		return idade;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setIdade(String idade) {
-		this.idade = idade;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getEmail() {
@@ -65,12 +61,28 @@ public class UserDTO implements Serializable {
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPsw() {
+		return psw;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPsw(String psw) {
+		this.psw = psw;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEntryDate() {
+		return entryDate;
+	}
+
+	public void setEntryDate(String entryDate) {
+		this.entryDate = entryDate;
 	}
 
 	public static long getSerialversionuid() {

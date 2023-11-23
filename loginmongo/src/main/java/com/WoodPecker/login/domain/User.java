@@ -13,74 +13,102 @@ public class User implements Serializable{
 	
 	@Id
 	private String id;
-	private String nome;
-	private String idade;
-	private String cpf;
+	private String name;
+	private String gender;
 	private String email;
-	private String senha;
+	private String psw;
+	private String phone;
+	private String entryDate;
 	
 	public User() {}
 
 
-	public User(String id, String nome, String idade, String cpf, String email, String senha) {
+	public User(String id, String name, String gender, String email, String psw, String phone, String entryDate) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.idade = idade;
-		this.cpf = cpf;
+		this.name = name;
+		this.gender = gender;
 		this.email = email;
-		this.senha = senha;
+		this.psw = psw;
+		this.phone = phone;
+		this.entryDate = entryDate;
 	}
-
 
 
 	public String getId() {
 		return id;
 	}
 
+
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getIdade() {
-		return idade;
+
+	public String getGender() {
+		return gender;
 	}
 
-	public void setIdade(String idade) {
-		this.idade = idade;
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
 
 	public String getEmail() {
 		return email;
 	}
 
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
+
+	public String getPsw() {
+		return psw;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+
+	public void setPsw(String psw) {
+		this.psw = psw;
 	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public String getEntryDate() {
+		return entryDate;
+	}
+
+
+	public void setEntryDate(String entryDate) {
+		this.entryDate = entryDate;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 
 	@Override
 	public int hashCode() {
