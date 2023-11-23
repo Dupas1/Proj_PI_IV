@@ -7,6 +7,7 @@ import "./client/telaperfil/perfil.css"
 import "./client/login/login.css"
 import "./client/studyspace/study.css"
 import "./client/telaflashcard/flash_card.css"
+import "./client/cadastro/cadastrocss.css"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

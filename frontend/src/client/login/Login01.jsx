@@ -58,7 +58,9 @@ export default function Login01() {
                             <Link to="/telahome">
                                 <button type="submit">ENTRAR</button>
                             </Link>
+                            <Link to ="/cadastropage">
                             <button type="button" onClick={mensagemtemporaria}>CADASTRAR-SE</button>
+                            </Link>
                         </div>
                     </form>
                 </div>
