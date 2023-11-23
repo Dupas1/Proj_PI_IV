@@ -1,6 +1,9 @@
 package com.WoodPecker.login.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
+
 
 import com.WoodPecker.login.domain.User;
 
@@ -13,7 +16,7 @@ public class UserDTO implements Serializable {
 	private String email;
 	private String psw;
 	private String phone;
-	private String entryDate;
+	private LocalDate entryDate = LocalDate.now();
 	
 	public UserDTO() {}
 	
@@ -79,11 +82,11 @@ public class UserDTO implements Serializable {
 		this.phone = phone;
 	}
 
-	public String getEntryDate() {
+	public LocalDate getEntryDate() {
 		return entryDate;
 	}
 
-	public void setEntryDate(String entryDate) {
+	public void setEntryDate(LocalDate entryDate) {
 		this.entryDate = entryDate;
 	}
 

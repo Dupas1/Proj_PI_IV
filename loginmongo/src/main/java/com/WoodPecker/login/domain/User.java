@@ -1,6 +1,7 @@
 package com.WoodPecker.login.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
@@ -18,12 +19,12 @@ public class User implements Serializable{
 	private String email;
 	private String psw;
 	private String phone;
-	private String entryDate;
+	private LocalDate entryDate = LocalDate.now();;
 	
 	public User() {}
 
 
-	public User(String id, String name, String gender, String email, String psw, String phone, String entryDate) {
+	public User(String id, String name, String gender, String email, String psw, String phone, LocalDate entryDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -95,12 +96,12 @@ public class User implements Serializable{
 	}
 
 
-	public String getEntryDate() {
+	public LocalDate getEntryDate() {
 		return entryDate;
 	}
 
 
-	public void setEntryDate(String entryDate) {
+	public void setEntryDate(LocalDate entryDate) {
 		this.entryDate = entryDate;
 	}
 
