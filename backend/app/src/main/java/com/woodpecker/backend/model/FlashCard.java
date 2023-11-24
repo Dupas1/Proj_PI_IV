@@ -12,7 +12,7 @@ public class FlashCard {
     private String question;
     private String answer;
     private String category;
-    private Enum difficulty;
+    private Difficulty difficulty;
     private Date timeSkip;
     private int numberReview;
     private String idUser;
