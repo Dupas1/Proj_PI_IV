@@ -22,6 +22,7 @@ public class FlashcardController {
         return ResponseEntity.ok(service.create(request));
     }
 
+    @GetMapping
     public ResponseEntity<List<FlashcardResponse>> getAll(){
         return ResponseEntity.ok(service.getAll());
     }
