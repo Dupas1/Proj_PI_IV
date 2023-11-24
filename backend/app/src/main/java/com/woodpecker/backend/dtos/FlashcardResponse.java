@@ -1,24 +1,19 @@
-package com.woodpecker.backend.model;
+package com.woodpecker.backend.dtos;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.woodpecker.backend.model.Difficulty;
 
 import java.util.Date;
 
-@Document(collection = "flashcards")
-public class FlashCard {
-    @Id
+public class FlashcardResponse
+{
     private String id;
     private String question;
     private String answer;
     private String category;
-    private Difficulty difficulty = null;
-    private Date timeSkip = new Date();
-    private int numberReview = 0;
+    private Difficulty difficulty;
+    private Date timeSkip;
+    private int numberReview;
     private String idUser;
-
-    //41:07
-    //36:05
 
     public String getId() {
         return id;

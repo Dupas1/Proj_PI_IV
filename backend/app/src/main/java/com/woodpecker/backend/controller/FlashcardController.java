@@ -1,16 +1,28 @@
 package com.woodpecker.backend.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.woodpecker.backend.dtos.FlashcardRequest;
+import com.woodpecker.backend.dtos.FlashcardResponse;
+import com.woodpecker.backend.model.FlashCard;
+import com.woodpecker.backend.service.FlashcardService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/flashcard")
 public class FlashcardController {
 
-    @GetMapping("/review")      //isso significa que quando requisitar para o endpoint  /flashcard/review irá retornar todos os flashcards do dia para revisar
-    public String getAllFlashcardOfDay(){
-        //TODO: Fazer função para retornar todos os flashcards que precisam ser revisados no dia
-        return "a";
+    @Autowired
+    private FlashcardService service;
+
+    @PostMapping    //isso significa que quando requisitar para o endpoint  /flashcard irá criar um flashcard
+    public ResponseEntity<FlashcardResponse> create(@RequestBody FlashcardRequest request){
+        return ResponseEntity.ok(service.create(request));
+    }
+
+    public ResponseEntity<List<FlashcardResponse>> getAll(){
+        return ResponseEntity.ok(service.getAll());
     }
 }
