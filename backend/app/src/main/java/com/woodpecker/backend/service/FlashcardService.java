@@ -4,6 +4,7 @@ import com.woodpecker.backend.dtos.FlashcardRequest;
 import com.woodpecker.backend.dtos.FlashcardResponse;
 import com.woodpecker.backend.model.Difficulty;
 import com.woodpecker.backend.model.FlashCard;
+import com.woodpecker.backend.model.User;
 import com.woodpecker.backend.repository.FlashcardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +18,14 @@ public class FlashcardService {
 
     @Autowired
     private FlashcardRepository repository;
+    private User user;
 
     public FlashcardResponse create(FlashcardRequest request){
         FlashCard flashcard = new FlashCard();
         flashcard.setQuestion(request.getQuestion());
         flashcard.setAnswer(request.getAnswer());
         flashcard.setCategory(request.getCategory());
+        //flashcard.setIdUser(user.getUid());
 
         repository.save(flashcard);
 

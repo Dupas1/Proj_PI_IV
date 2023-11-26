@@ -9,24 +9,15 @@ import org.springframework.validation.annotation.Validated;
 
 public class FlashcardRequest {
 
-    private String id;
-    @NotBlank
+    @NotBlank(message = "Question cannot be blank.")
+    @NotNull(message = "Question cannot be null.")
     private String question;
-    @NotBlank
+    @NotBlank(message = "Answer cannot be blank.")
+    @NotNull(message = "Answer cannot be null.")
     private String answer;
     private String category;
-    @NotNull(message = "Difficultity cannot be null")
     private Difficulty difficulty;
-    private String idUser;
 
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getQuestion() {
         return question;
@@ -60,11 +51,4 @@ public class FlashcardRequest {
         this.difficulty = difficulty;
     }
 
-    public String getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
-    }
 }

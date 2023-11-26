@@ -13,7 +13,7 @@ public class FlashcardResponse
     private Difficulty difficulty;
     private Date timeSkip;
     private int numberReview;
-    private String idUser;
+    //private String idUser;
 
     public String getId() {
         return id;
@@ -71,11 +71,11 @@ public class FlashcardResponse
         this.numberReview = numberReview;
     }
 
-    public String getIdUser() {
+    /*public String getIdUser() {
         return idUser;
     }
 
     public void setIdUser(String idUser) {
         this.idUser = idUser;
-    }
+    }*/
 }

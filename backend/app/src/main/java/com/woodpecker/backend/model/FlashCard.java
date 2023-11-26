@@ -12,10 +12,10 @@ public class FlashCard {
     private String question;
     private String answer;
     private String category;
-    private Difficulty difficulty = null;
+    private Difficulty difficulty = Difficulty.BEGIN;
     private Date timeSkip = new Date();
     private int numberReview = 0;
-    private String idUser;
+    //private String uid;
 
     //41:07
     //36:05
@@ -76,11 +76,11 @@ public class FlashCard {
         this.numberReview = numberReview;
     }
 
-    public String getIdUser() {
-        return idUser;
+    /*public String getIdUser() {
+        return uid;
     }
 
     public void setIdUser(String idUser) {
-        this.idUser = idUser;
-    }
+        this.uid = idUser;
+    }*/
 }
