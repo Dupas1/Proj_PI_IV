@@ -1,6 +1,7 @@
 package com.woodpecker.backend.dtos;
 
 import com.woodpecker.backend.model.Difficulty;
+import com.woodpecker.backend.validation.ValidCategory;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.lang.NonNull;
@@ -15,6 +16,7 @@ public class FlashcardRequest {
     @NotBlank(message = "Answer cannot be blank.")
     @NotNull(message = "Answer cannot be null.")
     private String answer;
+    @ValidCategory(message = "Category is not valid.")
     private String category;
     private Difficulty difficulty;
 
