@@ -1,11 +1,13 @@
 package com.WoodPecker.login.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.WoodPecker.login.dto.IdUserDTO;
 
 @Document(collection = "flashcards")
 public class FlashCard implements Serializable{
@@ -20,13 +22,13 @@ public class FlashCard implements Serializable{
     private Difficulty difficulty = null;
     private Date timeSkip = new Date();
     private int numberReview = 0;
-    private User idUser;
+    private IdUserDTO idUser;
 
     public FlashCard() {}
     
   
     public FlashCard(String id, String question, String answer, String category, Difficulty difficulty, Date timeSkip,
-			int numberReview, User idUser) {
+			int numberReview, IdUserDTO idUser) {
 		super();
 		this.id = id;
 		this.question = question;
@@ -35,7 +37,7 @@ public class FlashCard implements Serializable{
 		this.difficulty = difficulty;
 		this.timeSkip = timeSkip;
 		this.numberReview = numberReview;
-		this.idUser = idUser;
+		this.idUser = idUser; 
 	}
 
 
@@ -97,12 +99,12 @@ public class FlashCard implements Serializable{
     }
 
 
-	public User getIdUser() {
+	public IdUserDTO getIdUser() {
 		return idUser;
 	}
 
 
-	public void setIdUser(User idUser) {
+	public void setIdUser(IdUserDTO idUser) {
 		this.idUser = idUser;
 	}
 
