@@ -19,7 +19,7 @@ public class FlashCard implements Serializable{
     private String question;
     private String answer;
     private String category;
-    private Difficulty difficulty = null;
+    private Difficulty difficulty = Difficulty.BEGIN;
     private Date timeSkip = new Date();
     private int numberReview = 0;
     private IdUserDTO idUser;
