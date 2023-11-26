@@ -16,7 +16,7 @@ public class UserDTO implements Serializable {
 	private String email;
 	private String psw;
 	private String phone;
-	private LocalDate entryDate = LocalDate.now();
+	private LocalDate entryDate;
 	
 	public UserDTO() {}
 	
