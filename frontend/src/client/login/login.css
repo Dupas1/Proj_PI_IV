@@ -1,0 +1,130 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-side {
+    flex: 1;
+    background: url('fundoLogin.png ') no-repeat center center;
+    background-size: cover; 
+}
+
+
+.right-side {
+    flex: 1;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 20px;
+;
+}
+
+.greeting-1 {
+    font-family: 'Vollkorn SC', serif; 
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    width: 149px;
+    height: 22px;
+    position: absolute;
+    top: 228px;
+    left: 1100px;
+}
+
+.greeting-2 {
+    font-family: 'Vollkorn SC', serif; 
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    width: 471px;
+    height: 17px;
+    position: absolute;
+    top: 258px;
+    left: 1100px;
+}
+
+
+.logo {
+    width: 553px;
+    height: 110px;
+    position: absolute; 
+    top: 64px;
+    left: 1100px;
+    padding: 10px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 24px; 
+    position: absolute;
+    left: 1100px;
+    top: 383px;
+}
+
+
+.form-group input {
+    width: 471px;
+    height: 40px; 
+    text-align: left;
+    padding: 0 10px;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+
+.button-group button {
+    width: 168px;
+    height: 32px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Estilo específico para o botão ENTRAR */
+.button-group button[type="submit"] {
+    background-color: #111; /* Cor preta */
+    color: #FFF; /* Cor branca para o texto */
+}
+
+.button-group button[type="submit"]:hover {
+    background-color: #333; /* Uma cor mais clara de preto ao passar o mouse */
+}
+
+/* Estilo específico para o botão CADASTRAR-SE */
+.button-group button[type="button"] {
+    background-color: transparent;
+    color: #000; /* Cor preta para o texto */
+    border: 1px solid #000; /* Borda preta */
+}
+
+.button-group button[type="button"]:hover {
+    background-color: #000; /* Cor preta */
+    color: #FFF; /* Cor branca para o texto */
+}
