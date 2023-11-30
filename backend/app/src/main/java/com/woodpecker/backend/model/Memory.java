@@ -15,6 +15,53 @@ public class Memory {
         private String[] navigator;
         private String[] explorer;
 
-        //TODO: Fazer os getters e setters dessa classe interna
+        public String[] getMaster() {
+            return master;
+        }
+
+        public void setMaster(String[] master) {
+            this.master = master;
+        }
+
+        public String[] getNavigator() {
+            return navigator;
+        }
+
+        public void setNavigator(String[] navigator) {
+            this.navigator = navigator;
+        }
+
+        public String[] getExplorer() {
+            return explorer;
+        }
+
+        public void setExplorer(String[] explorer) {
+            this.explorer = explorer;
+        }
+
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getMemoryRate() {
+        return memoryRate;
+    }
+
+    public void setMemoryRate(int memoryRate) {
+        this.memoryRate = memoryRate;
+    }
+
+    public int getMemoryHealth() {
+        return memoryHealth;
+    }
+
+    public void setMemoryHealth(int memoryHealth) {
+        this.memoryHealth = memoryHealth;
     }
 }
