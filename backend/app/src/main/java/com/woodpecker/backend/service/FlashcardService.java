@@ -18,7 +18,6 @@ public class FlashcardService {
 
     @Autowired
     private FlashcardRepository repository;
-    private User user;
 
     public FlashcardResponse create(FlashcardRequest request){
         FlashCard flashcard = new FlashCard();
