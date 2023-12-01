@@ -14,6 +14,12 @@ public class Performance {
     @DBRef(lazy = true)
     private Activity activity;
 
+    public Performance(){
+        this.memory = new Memory();
+        this.overload = 0;
+        this.activity = new Activity();
+    }
+
     public String getId() {
         return id;
     }

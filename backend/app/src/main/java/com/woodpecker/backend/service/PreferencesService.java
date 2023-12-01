@@ -23,10 +23,9 @@ public class PreferencesService {
         return createResponse(preferences);
     }
 
-    public PreferencesResponse createOrUpdate(String uid, PreferencesRequest request){
+    public PreferencesResponse update(String uid, PreferencesRequest request){
 
         Preference preferences = userRepository.findByUid(uid).getPreferences();
-        if(preferences == null) preferences = new Preference();
 
         preferences.setHasAccident(request.hasAccident());
         preferences.setHasDisease(request.hasDisease());

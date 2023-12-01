@@ -12,6 +12,13 @@ public class Settings {
     private String language;
     private StudyType studyType;
 
+    public Settings() {
+        this.darkMode = false;
+        this.notifications = false;
+        this.language = null;
+        this.studyType = StudyType.HYBRID;
+    }
+
     public String getId() {
         return id;
     }

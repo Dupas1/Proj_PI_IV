@@ -2,9 +2,7 @@ package com.woodpecker.backend.service;
 
 import com.woodpecker.backend.dtos.UserRequest;
 import com.woodpecker.backend.dtos.UserResponse;
-import com.woodpecker.backend.model.Preference;
-import com.woodpecker.backend.model.Settings;
-import com.woodpecker.backend.model.User;
+import com.woodpecker.backend.model.*;
 import com.woodpecker.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +24,12 @@ public class UserService {
         user.setPhone(request.getPhone());
         user.setEntryDate(new Date());
         user.setGender(request.getGender());
-        repository.save(user);
+        user.setSettings(new Settings());
+        user.setProgress(new Progress());
+        user.setPreferences(new Preference());
+        user.setPerformance(new Performance());
 
+        repository.save(user);
         return createResponse(user);
 
         //poderia fazer uma try catch para tratar erro, caso venha falhar a operacao de criacao.

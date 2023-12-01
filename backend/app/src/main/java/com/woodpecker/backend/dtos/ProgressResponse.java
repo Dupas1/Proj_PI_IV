@@ -1,23 +1,12 @@
-package com.woodpecker.backend.model;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.woodpecker.backend.dtos;
 
 import java.util.ArrayList;
 
-@Document(collection = "progresses")
-public class Progress {
-    @Id
+public class ProgressResponse {
     private String id;
     private int averageHitRate;
     private ArrayList<Boolean> frequency;
     private ArrayList<Integer> performance;
-
-    public Progress() {
-        this.averageHitRate = 0;
-        this.frequency = new ArrayList<Boolean>();
-        this.performance = new ArrayList<Integer>();
-    }
 
     public String getId() {
         return id;

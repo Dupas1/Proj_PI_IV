@@ -27,10 +27,10 @@ public class PreferencesController {
     public ResponseEntity<PreferencesResponse> findPreferences(@PathVariable String uid){
         return ResponseEntity.ok(service.findByUid(uid));
     }
-    @PostMapping
-    public ResponseEntity<?> createOrUpdate(@PathVariable String uid, @Valid @RequestBody PreferencesRequest request, BindingResult bindingResult){
+    @PutMapping
+    public ResponseEntity<?> update(@PathVariable String uid, @Valid @RequestBody PreferencesRequest request, BindingResult bindingResult){
         if(bindingResult.hasErrors()) return handleErrors(bindingResult);
-        return ResponseEntity.ok(service.createOrUpdate(uid,request));
+        return ResponseEntity.ok(service.update(uid,request));
     }
 
     private ResponseEntity<?> handleErrors(BindingResult bindingResult){
@@ -43,7 +43,7 @@ public class PreferencesController {
         response.put("timestamp", new Date());
         response.put("status", HttpStatus.BAD_REQUEST.value());
         response.put("errors", validationErrors);
-        response.put("path", "/settings");
+        response.put("path", "/preferences");
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 

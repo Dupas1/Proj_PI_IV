@@ -3,6 +3,7 @@ package com.woodpecker.backend.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "preferences")
@@ -15,6 +16,15 @@ public class Preference {
     private List<String> studiesPreferences;
     private List<String> areasInterest;
     private String studiesDifficulties;
+
+    public Preference() {
+        this.hasAccident = false;
+        this.hasDisease = false;
+        this.stageLoseMemory = 0;
+        this.studiesPreferences = new ArrayList<String>();
+        this.areasInterest = new ArrayList<String>();
+        this.studiesDifficulties = null;
+    }
 
     public String getId() {
         return id;

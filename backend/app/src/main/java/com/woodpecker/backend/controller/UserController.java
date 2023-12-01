@@ -60,7 +60,7 @@ public class UserController {
         response.put("timestamp", new Date());
         response.put("status", HttpStatus.BAD_REQUEST.value());
         response.put("errors", validationErrors);
-        response.put("path", "/settings");
+        response.put("path", "/user");
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 

@@ -22,6 +22,9 @@ public class User {
     private Performance performance;
     @DBRef(lazy = true)
     private Settings settings;
+    @DBRef(lazy = true)
+    private Progress progress;
+
 
     public String getUid() {
         return uid;
@@ -101,5 +104,13 @@ public class User {
 
     public void setSettings(Settings settings) {
         this.settings = settings;
+    }
+
+    public Progress getProgress() {
+        return progress;
+    }
+
+    public void setProgress(Progress progress) {
+        this.progress = progress;
     }
 }

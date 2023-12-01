@@ -25,10 +25,9 @@ public class SettingsService {
         throw new Exception("Settings not found for user with uid:" + uid);
     }
 
-    public SettingsResponse createOrUpdate(String uid, SettingsRequest request){
+    public SettingsResponse update(String uid, SettingsRequest request){
 
         Settings settings = userRepository.findByUid(uid).getSettings();
-        if(settings == null) settings = new Settings();
 
         settings.setLanguage(request.getLanguage());
         settings.setNotifications(request.isNotifications());
