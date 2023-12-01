@@ -4,6 +4,7 @@ import com.woodpecker.backend.dtos.PreferencesRequest;
 import com.woodpecker.backend.dtos.PreferencesResponse;
 import com.woodpecker.backend.model.Preference;
 import com.woodpecker.backend.repository.PreferenceRepository;
+import com.woodpecker.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,28 +15,19 @@ public class PreferencesService {
     @Autowired
     PreferenceRepository repository;
 
-    public PreferencesResponse create(PreferencesRequest preferencesRequest){
-
-        Preference preference = new Preference();
-        preference.setHasAccident(preferencesRequest.hasAccident());
-        preference.setHasDisease(preferencesRequest.hasDisease());
-        preference.setStageLoseMemory(preferencesRequest.getStageLoseMemory());
-        preference.setStudiesPreferences(preferencesRequest.getStudiesPreferences());
-        preference.setAreasInterest(preferencesRequest.getAreasInterest());
-        preference.setStudiesDifficulties(preferencesRequest.getStudiesDifficulties());
-
-        repository.save(preference);
-        return createResponse(preference);
-    }
+    @Autowired
+    UserRepository userRepository;
 
     public PreferencesResponse findByUid(String uid){
         Preference preferences = repository.findByUid(uid);
         return createResponse(preferences);
     }
 
-    public PreferencesResponse update(String uid, PreferencesRequest request){
+    public PreferencesResponse createOrUpdate(String uid, PreferencesRequest request){
 
-        Preference preferences = repository.findByUid(uid);
+        Preference preferences = userRepository.findByUid(uid).getPreferences();
+        if(preferences == null) preferences = new Preference();
+
         preferences.setHasAccident(request.hasAccident());
         preferences.setHasDisease(request.hasDisease());
         preferences.setStageLoseMemory(request.getStageLoseMemory());

@@ -1,12 +1,14 @@
 package com.woodpecker.backend.controller;
 
-import com.woodpecker.backend.dtos.PreferencesRequest;
-import com.woodpecker.backend.dtos.PreferencesResponse;
-import com.woodpecker.backend.service.PreferencesService;
+import com.woodpecker.backend.dtos.UserRequest;
+import com.woodpecker.backend.dtos.UserResponse;
+import com.woodpecker.backend.service.FlashcardService;
+import com.woodpecker.backend.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,20 +19,35 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/user/{uid}/preferences")
-public class PreferencesController {
-
+@RequestMapping("/user")
+public class UserController {
     @Autowired
-    PreferencesService service;
+    UserService service;
 
-    @GetMapping
-    public ResponseEntity<PreferencesResponse> findPreferences(@PathVariable String uid){
+    @PostMapping
+    public ResponseEntity<?> create(@Valid @RequestBody UserRequest request, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) return handleErrors(bindingResult);
+        return ResponseEntity.ok(service.create(request));
+    }
+
+    @GetMapping("/{uid}")
+    public ResponseEntity<UserResponse> findUser(@PathVariable String uid){
         return ResponseEntity.ok(service.findByUid(uid));
     }
-    @PostMapping
-    public ResponseEntity<?> createOrUpdate(@PathVariable String uid, @Valid @RequestBody PreferencesRequest request, BindingResult bindingResult){
+
+    @PutMapping("/{uid}")
+    public ResponseEntity<?> update(@PathVariable String uid,@Valid @RequestBody UserRequest request, BindingResult bindingResult){
         if(bindingResult.hasErrors()) return handleErrors(bindingResult);
-        return ResponseEntity.ok(service.createOrUpdate(uid,request));
+        return ResponseEntity.ok(service.update(uid,request));
+    }
+
+    @DeleteMapping("/{uid}")
+    public ResponseEntity<?> delete(@PathVariable String uid){
+        boolean success = service.delete(uid);
+        if(success){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
     private ResponseEntity<?> handleErrors(BindingResult bindingResult){

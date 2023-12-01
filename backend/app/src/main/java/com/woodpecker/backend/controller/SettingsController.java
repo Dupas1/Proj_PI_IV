@@ -17,27 +17,21 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/settings")
+@RequestMapping("/user/{uid}/settings")
 public class SettingsController {
 
     @Autowired
     private SettingsService service;
 
-    @GetMapping("/{uid}")
-    public ResponseEntity<SettingsResponse> findSettings(@PathVariable String uid){ return ResponseEntity.ok(service.findByUid(uid));}
+    @GetMapping
+    public ResponseEntity<SettingsResponse> findSettings(@PathVariable String uid) throws Exception{ return ResponseEntity.ok(service.findByUid(uid));}
+
 
     @PostMapping
-    public ResponseEntity<?> set(@Valid @RequestBody SettingsRequest request, BindingResult bindingResult){
+    public ResponseEntity<?> createOrUpdate(@PathVariable String uid, @Valid @RequestBody SettingsRequest request, BindingResult bindingResult){
         if(bindingResult.hasErrors()) return handleErrors(bindingResult);
 
-        return ResponseEntity.ok(service.create(request));
-    }
-
-    @PutMapping("/{uid}")
-    public ResponseEntity<?> update(@PathVariable String uid, @Valid @RequestBody SettingsRequest request, BindingResult bindingResult){
-        if(bindingResult.hasErrors()) return handleErrors(bindingResult);
-
-        return ResponseEntity.ok(service.update(uid, request));
+        return ResponseEntity.ok(service.createOrUpdate(uid, request));
     }
 
     private ResponseEntity<?> handleErrors(BindingResult bindingResult){
