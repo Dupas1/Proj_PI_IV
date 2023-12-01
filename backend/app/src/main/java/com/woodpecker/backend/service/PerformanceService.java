@@ -25,6 +25,8 @@ public class PerformanceService {
         performance.setActivity(request.getActivity());
         performance.setMemory(request.getMemory());
 
+        //TODO: Talvez tenha que revisar como vai pegar os dados do request da Performance, pois esses campos atualmente só são uma referência ao BD.
+
         repository.save(performance);
         return createResponse(performance);
     }
