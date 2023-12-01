@@ -19,10 +19,6 @@ export default function Login01() {
         console.log('Login submitted:', { email, password });
     };
 
-    const mensagemtemporaria = () => {
-        alert('Carregando...');
-    };
-
     return (
         <div className="container">
             <div className="left-side">
@@ -59,7 +55,7 @@ export default function Login01() {
                                 <button type="submit">ENTRAR</button>
                             </Link>
                             <Link to ="/cadastropage">
-                            <button type="button" onClick={mensagemtemporaria}>CADASTRAR-SE</button>
+                            <button type="button">CADASTRAR-SE</button>
                             </Link>
                         </div>
                     </form>

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Popup from './popup'; // Importando o componente Popu
+import './flash_card.css';
 
 export default function FlashCard() {
     const [flashCards, setFlashCards] = useState([]);
@@ -34,27 +35,27 @@ export default function FlashCard() {
                     </div>
                     <hr />
                     {showPopup && (
-                        <Popup 
-                            newCard={newCard} 
-                            setNewCard={setNewCard} 
+                        <Popup
+                            newCard={newCard}
+                            setNewCard={setNewCard}
                             onSave={handleAddCard}
                         />
                     )}
 
                     <div className="flashcard-container">
-                {flashCards.map((card, index) => (
-                    <div key={index} className="flashcard">
-                        <p>Tipo: {card.tipo}</p>
-                        <p>Pergunta: {card.pergunta}</p>
-                        <p>Resposta: {card.resposta}</p>
+                        {flashCards.map((card, index) => (
+                            <div key={index} className="flashcard">
+                                <p>Tipo: {card.tipo}</p>
+                                <p>Pergunta: {card.pergunta}</p>
+                                <p>Resposta: {card.resposta}</p>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
                 </div>
             </section>
 
             <footer className="footer">
-            <div className="imgesquerda">
+                <div className="imgesquerda">
                     <div>
                         <Link to="/telaconfig">
                             <img className="img" src="icone.config.png" alt="" />
@@ -99,8 +100,8 @@ export default function FlashCard() {
                             <img className="img" src="icone.wp.png" alt="" />
                         </Link>
                     </a>
-                </div>           
-                 </footer>
+                </div>
+            </footer>
         </div>
     );
 }

@@ -1,5 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
+import api from '../../services/api';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 export default function Cadastro() {
     const [name, setName] = useState('');
@@ -30,9 +33,20 @@ export default function Cadastro() {
         }
     };
 
-    const handleSubmit = (event) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('Registration submitted:', { name, gender, email, password, phone });
+//        console.log('Registration submitted:', { name, gender, email, password, phone });
+        try {
+            const response = await api.post("/user",{ name, gender, email, password, phone });
+            console.log("response",response);
+                window.alert("Usuário cadastrado com sucesso, voce será redirecionado para tela de login!");
+                navigate("/");
+            }catch(error){
+            window.alert("Erro ao cadastrar usuário");
+            console.log(error.message);
+        }
     };
 
     return (
