@@ -1,6 +1,7 @@
 package com.woodpecker.backend.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -15,10 +16,12 @@ public class User {
     private Date entryDate;
     private String phone;
     private String gender;
+    @DBRef(lazy = true)
     private String preferences;
-    private String flashcards;
-    private String performance;
-    private String configurations;
+    @DBRef(lazy = true)
+    private Performance performance;
+    @DBRef(lazy = true)
+    private Settings settings;
 
     public String getUid() {
         return uid;
@@ -84,27 +87,19 @@ public class User {
         this.preferences = preferences;
     }
 
-    public String getFlashcards() {
-        return flashcards;
-    }
-
-    public void setFlashcards(String flashcards) {
-        this.flashcards = flashcards;
-    }
-
-    public String getPerformance() {
+    public Performance getPerformance() {
         return performance;
     }
 
-    public void setPerformance(String performance) {
+    public void setPerformance(Performance performance) {
         this.performance = performance;
     }
 
-    public String getConfigurations() {
-        return configurations;
+    public Settings getConfigurations() {
+        return settings;
     }
 
     public void setConfigurations(String configurations) {
-        this.configurations = configurations;
+        this.settings = settings;
     }
 }

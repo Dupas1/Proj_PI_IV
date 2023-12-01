@@ -1,28 +1,26 @@
-package com.woodpecker.backend.model;
+package com.woodpecker.backend.dtos;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
-@Document(collection = "preferences")
-public class Preference {
-    @Id
-    private String id;
+public class PreferencesRequest {
+    @NotNull(message = "Accident field cannot be null.")
+    @NotBlank(message = "Accident field cannot be blank.")
     private boolean hasAccident;
+    @NotNull(message = "Disease field cannot be null.")
+    @NotBlank(message = "Disease field cannot be blank.")
     private boolean hasDisease;
+    @NotNull(message = "Stage of lose memory field cannot be null.")
+    @NotBlank(message = "Stage of lose memory field cannot be blank.")
     private int stageLoseMemory;
+    @NotNull(message = "Studies preferences field cannot be null.")
     private List<String> studiesPreferences;
+    @NotNull(message = "Areas of interest field cannot be null.")
     private List<String> areasInterest;
-    private String studiesDifficulties;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    @NotNull(message = "Study difficulties field cannot be null.")
+    private String studyDifficulties;
 
     public boolean hasAccident() {
         return hasAccident;
@@ -65,10 +63,10 @@ public class Preference {
     }
 
     public String getStudiesDifficulties() {
-        return studiesDifficulties;
+        return studyDifficulties;
     }
 
     public void setStudiesDifficulties(String studiesDifficulties) {
-        this.studiesDifficulties = studiesDifficulties;
+        this.studyDifficulties = studiesDifficulties;
     }
 }

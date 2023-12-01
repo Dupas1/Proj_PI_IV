@@ -15,10 +15,9 @@ public class FlashCard {
     private Difficulty difficulty = Difficulty.BEGIN;
     private Date timeSkip = new Date();
     private int numberReview = 0;
-    //private String uid;
 
-    //41:07
-    //36:05
+    //TODO: Criar uma variavel de referencia para o tema relacionado a esse flashcard.
+    //TODO: Criar uma classe para Temas
 
     public String getId() {
         return id;
@@ -76,11 +75,4 @@ public class FlashCard {
         this.numberReview = numberReview;
     }
 
-    /*public String getIdUser() {
-        return uid;
-    }
-
-    public void setIdUser(String idUser) {
-        this.uid = idUser;
-    }*/
 }

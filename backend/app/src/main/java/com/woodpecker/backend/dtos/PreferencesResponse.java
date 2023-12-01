@@ -1,13 +1,8 @@
-package com.woodpecker.backend.model;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.woodpecker.backend.dtos;
 
 import java.util.List;
 
-@Document(collection = "preferences")
-public class Preference {
-    @Id
+public class PreferencesResponse {
     private String id;
     private boolean hasAccident;
     private boolean hasDisease;
@@ -24,7 +19,7 @@ public class Preference {
         this.id = id;
     }
 
-    public boolean hasAccident() {
+    public boolean isHasAccident() {
         return hasAccident;
     }
 
@@ -32,7 +27,7 @@ public class Preference {
         this.hasAccident = hasAccident;
     }
 
-    public boolean hasDisease() {
+    public boolean isHasDisease() {
         return hasDisease;
     }
 
