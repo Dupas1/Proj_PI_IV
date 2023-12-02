@@ -1,12 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import './login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import api from '../../services/api'
+
 
 
 export default function Login01() {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [psw, setPassword] = useState('');
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -14,15 +16,25 @@ export default function Login01() {
         else if (name === 'password') setPassword(value);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault(); // Isso impede o comportamento padrão do formulário de recarregar a página.
-        console.log('Login submitted:', { email, password });
+    const navigate = useNavigate();
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await api.post("/login/{email}",{ email, psw });
+            console.log("response",response);
+                window.alert("Usuário entrando...");
+                navigate("/");
+            }catch(error){
+            window.alert("Algo deu errado :(");
+            console.log(error.message);
+        }
     };
 
     return (
         <div className="container">
             <div className="left-side">
-                {/* Conteúdo do lado esquerdo (se necessário) pode ser adicionado aqui */}
             </div>
             <div className="right-side">
                 <img src="https://cdn.discordapp.com/attachments/1097641912598540363/1151599588340408412/image.png?ex=65679031&is=65551b31&hm=90b0dbd2b66b2fcb33bc628ddf934682f4c374ed8fc7ba416038cee8745f4fa6&" alt="Woodpeacker Logo" className="logo" />
@@ -45,7 +57,7 @@ export default function Login01() {
                                 type="password"
                                 name="password"
                                 placeholder="Senha"
-                                value={password}
+                                value={psw}
                                 onChange={handleInputChange}
                                 required
                             />
