@@ -1,15 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import api from '../../services/api';
+import api from '../../services/api/index';
 import { useNavigate } from 'react-router-dom';
-
 
 
 export default function Cadastro() {
     const [name, setName] = useState('');
     const [gender, setGender] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [psw, setPassword] = useState('');
     const [phone, setPhone] = useState('');
 
     const handleInputChange = (event) => {
@@ -24,7 +23,7 @@ export default function Cadastro() {
             case 'email':
                 setEmail(value);
                 break;
-            case 'password':
+            case 'psw':
                 setPassword(value);
                 break;
             case 'phone':
@@ -38,15 +37,18 @@ export default function Cadastro() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-//        console.log('Registration submitted:', { name, gender, email, password, phone });
+        const url = "http://localhost:8080/user";
+        console.log(`Making a POST request to: ${api.defaults.baseURL}${url}`);
+        console.log(`${phone}, ${name}, ${gender}, ${email}, ${psw}`)
         try {
-            const response = await api.post("/user",{ name, gender, email, password, phone });
+            const response = await api.post(url,{ name, gender, email, psw, phone });
             console.log("response",response);
                 window.alert("Usuário cadastrado com sucesso, voce será redirecionado para tela de login!");
                 navigate("/");
             }catch(error){
             window.alert("Erro ao cadastrar usuário");
-            console.log(error.message);
+            console.error("Error message",error.message);
+            console.error("Error response", error.response);
         }
     };
 
@@ -97,9 +99,9 @@ export default function Cadastro() {
                         <div className="form-group">
                             <input
                                 type="password"
-                                name="password"
+                                name="psw"
                                 placeholder="Senha"
-                                value={password}
+                                value={psw}
                                 onChange={handleInputChange}
                                 required
                             />
