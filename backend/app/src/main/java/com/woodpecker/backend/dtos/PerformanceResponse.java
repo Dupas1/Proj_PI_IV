@@ -1,28 +1,14 @@
-package com.woodpecker.backend.model;
+package com.woodpecker.backend.dtos;
 
-import com.woodpecker.backend.repository.MemoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
+import com.woodpecker.backend.model.Activity;
+import com.woodpecker.backend.model.Memory;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "performances")
-public class Performance {
-    @Id
+public class PerformanceResponse {
     private String id;
-    @DBRef(lazy = true)
     private Memory memory;
     private int overload;
-    @DBRef(lazy = true)
     private Activity activity;
-
-    public Performance(){
-
-        this.memory = new Memory();
-
-        this.overload = 0;
-        this.activity = new Activity();
-    }
 
     public String getId() {
         return id;

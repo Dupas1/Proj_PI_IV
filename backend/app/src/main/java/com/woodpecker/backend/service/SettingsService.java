@@ -4,8 +4,11 @@ import com.woodpecker.backend.dtos.SettingsRequest;
 import com.woodpecker.backend.dtos.SettingsResponse;
 import com.woodpecker.backend.model.Settings;
 import com.woodpecker.backend.model.StudyType;
+import com.woodpecker.backend.model.User;
 import com.woodpecker.backend.repository.SettingsRepository;
+import com.woodpecker.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,35 +16,33 @@ public class SettingsService {
 
     @Autowired
     private SettingsRepository repository;
+    @Autowired
+    private UserRepository userRepository;
 
-    public SettingsResponse create(SettingsRequest request){
-
-        Settings settings = new Settings();
-        settings.setLanguage(request.getLanguage());
-        settings.setNotifications(request.isNotifications());
-        settings.setDarkMode(true);
-        settings.setStudyType(StudyType.HYBRID);
-
-        repository.save(settings);
-
-        return createResponse(settings);
+    public SettingsResponse findByUid(String uid) throws Exception{
+        User user = userRepository.findByUid(uid);
+        if( user != null && user.getSettings() != null) return createResponse(user.getSettings());
+        throw new Exception("Settings not found for user with uid:" + uid);
     }
 
-    public SettingsResponse findByUid(String uid){
-        Settings settings = repository.findByUid(uid);
-        return createResponse(settings);
+    public Settings initialize(){
 
+        Settings settings = new Settings();
+
+        repository.save(settings);
+        return settings;
     }
 
     public SettingsResponse update(String uid, SettingsRequest request){
 
-        Settings settings = repository.findByUid(uid);
+        Settings settings = userRepository.findByUid(uid).getSettings();
+
         settings.setLanguage(request.getLanguage());
         settings.setNotifications(request.isNotifications());
         settings.setStudyType(request.getStudyType());
         settings.setDarkMode(request.isDarkMode());
-        repository.save(settings);
 
+        repository.save(settings);
         return createResponse(settings);
     }
 

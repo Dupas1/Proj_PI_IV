@@ -1,8 +1,8 @@
 package com.woodpecker.backend.controller;
 
-import com.woodpecker.backend.dtos.PerformanceRequest;
-import com.woodpecker.backend.dtos.PerformanceResponse;
-import com.woodpecker.backend.service.PerformanceService;
+import com.woodpecker.backend.dtos.PreferencesRequest;
+import com.woodpecker.backend.dtos.PreferencesResponse;
+import com.woodpecker.backend.service.PreferencesService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,21 +17,20 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/performance/{uid}")
-public class PerformanceController {
+@RequestMapping("/user/{uid}/preferences")
+public class PreferencesController {
 
     @Autowired
-    PerformanceService service;
-
-    @PostMapping
-    public ResponseEntity<?> update(@PathVariable String uid, @Valid @RequestBody PerformanceRequest request, BindingResult bindingResult){
-        if(bindingResult.hasErrors()) return handleErrors(bindingResult);
-        return ResponseEntity.ok(service.update(uid, request));
-    }
+    PreferencesService service;
 
     @GetMapping
-    public ResponseEntity<PerformanceResponse> findByUid(@PathVariable String uid){
+    public ResponseEntity<PreferencesResponse> findPreferences(@PathVariable String uid){
         return ResponseEntity.ok(service.findByUid(uid));
+    }
+    @PutMapping
+    public ResponseEntity<?> update(@PathVariable String uid, @Valid @RequestBody PreferencesRequest request, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) return handleErrors(bindingResult);
+        return ResponseEntity.ok(service.update(uid,request));
     }
 
     private ResponseEntity<?> handleErrors(BindingResult bindingResult){
@@ -44,7 +43,7 @@ public class PerformanceController {
         response.put("timestamp", new Date());
         response.put("status", HttpStatus.BAD_REQUEST.value());
         response.put("errors", validationErrors);
-        response.put("path", "/performance");
+        response.put("path", "/preferences");
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 

@@ -1,14 +1,8 @@
-package com.woodpecker.backend.model;
+package com.woodpecker.backend.dtos;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "preferences")
-public class Preference {
-    @Id
+public class PreferencesResponse {
     private String id;
     private boolean hasAccident;
     private boolean hasDisease;
@@ -16,15 +10,6 @@ public class Preference {
     private List<String> studiesPreferences;
     private List<String> areasInterest;
     private String studiesDifficulties;
-
-    public Preference() {
-        this.hasAccident = false;
-        this.hasDisease = false;
-        this.stageLoseMemory = 0;
-        this.studiesPreferences = new ArrayList<String>();
-        this.areasInterest = new ArrayList<String>();
-        this.studiesDifficulties = null;
-    }
 
     public String getId() {
         return id;
@@ -34,7 +19,7 @@ public class Preference {
         this.id = id;
     }
 
-    public boolean hasAccident() {
+    public boolean isHasAccident() {
         return hasAccident;
     }
 
@@ -42,7 +27,7 @@ public class Preference {
         this.hasAccident = hasAccident;
     }
 
-    public boolean hasDisease() {
+    public boolean isHasDisease() {
         return hasDisease;
     }
 

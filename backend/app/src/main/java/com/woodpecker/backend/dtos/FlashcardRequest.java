@@ -1,6 +1,7 @@
 package com.woodpecker.backend.dtos;
 
 import com.woodpecker.backend.model.Difficulty;
+import com.woodpecker.backend.model.User;
 import com.woodpecker.backend.validation.ValidCategory;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,6 +21,15 @@ public class FlashcardRequest {
     private String category;
     private Difficulty difficulty;
 
+    private User uid;
+
+    public User getUid() {
+        return uid;
+    }
+
+    public void setIdUser(User uid) {
+        this.uid = uid;
+    }
 
     public String getQuestion() {
         return question;

@@ -1,6 +1,7 @@
 package com.woodpecker.backend.dtos;
 
 import com.woodpecker.backend.model.Difficulty;
+import com.woodpecker.backend.model.User;
 
 import java.util.Date;
 
@@ -13,7 +14,8 @@ public class FlashcardResponse
     private Difficulty difficulty;
     private Date timeSkip;
     private int numberReview;
-    //private String idUser;
+
+    private User Uid;
 
     public String getId() {
         return id;
@@ -71,11 +73,11 @@ public class FlashcardResponse
         this.numberReview = numberReview;
     }
 
-    /*public String getIdUser() {
-        return idUser;
+    public User getUid() {
+        return Uid;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
-    }*/
+    public void setIdUser(User uid) {
+        this.Uid = uid;
+    }
 }
