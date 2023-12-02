@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import api from '../../services/api/index';
+import api from '../../services/api/index.js';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -37,7 +37,7 @@ export default function Cadastro() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const url = "http://localhost:8080/user";
+        const url = "/user";
         console.log(`Making a POST request to: ${api.defaults.baseURL}${url}`);
         console.log(`${phone}, ${name}, ${gender}, ${email}, ${psw}`)
         try {
