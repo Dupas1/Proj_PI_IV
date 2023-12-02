@@ -19,6 +19,8 @@ public class FlashCard {
     //TODO: Criar uma variavel de referencia para o tema relacionado a esse flashcard.
     //TODO: Criar uma classe para Temas
 
+    private User uid;
+
     public String getId() {
         return id;
     }
@@ -73,6 +75,15 @@ public class FlashCard {
 
     public void setNumberReview(int numberReview) {
         this.numberReview = numberReview;
+    }
+
+    public User getUid() {
+        return uid;
+    }
+
+
+    public void setIdUser(User uid) {
+        this.uid = uid;
     }
 
 }

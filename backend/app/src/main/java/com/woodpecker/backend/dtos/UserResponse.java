@@ -1,5 +1,7 @@
 package com.woodpecker.backend.dtos;
 
+import com.woodpecker.backend.model.User;
+
 import java.util.Date;
 
 public class UserResponse {
@@ -10,6 +12,18 @@ public class UserResponse {
     private Date entryDate;
     private String phone;
     private String gender;
+
+    public UserResponse(){}
+
+    public UserResponse(User x){
+        uid = x.getUid();
+        name = x.getName();
+        gender = x.getGender();
+        email = x.getEmail();
+        psw = x.getPsw();
+        phone = x.getPhone();
+        entryDate = x.getEntryDate();
+    }
 
     public String getUid() {
         return uid;

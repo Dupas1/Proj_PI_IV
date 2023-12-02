@@ -4,7 +4,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Document(collection = "users")
 public class User {
@@ -16,6 +18,7 @@ public class User {
     private Date entryDate;
     private String phone;
     private String gender;
+
     @DBRef(lazy = true)
     private Preference preferences;
     @DBRef(lazy = true)
@@ -24,7 +27,16 @@ public class User {
     private Settings settings;
     @DBRef(lazy = true)
     private Progress progress;
+    @DBRef(lazy = true)
+    private List<FlashCard> flashCard = new ArrayList<>();
 
+    public List<FlashCard> getFlashCard() {
+        return flashCard;
+    }
+
+    public void setFlashCard(List<FlashCard> flashCard) {
+        this.flashCard = flashCard;
+    }
 
     public String getUid() {
         return uid;

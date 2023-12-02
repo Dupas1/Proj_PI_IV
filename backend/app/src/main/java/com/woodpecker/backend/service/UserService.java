@@ -4,10 +4,13 @@ import com.woodpecker.backend.dtos.UserRequest;
 import com.woodpecker.backend.dtos.UserResponse;
 import com.woodpecker.backend.model.*;
 import com.woodpecker.backend.repository.UserRepository;
+import com.woodpecker.backend.service.Exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -51,8 +54,17 @@ public class UserService {
         //poderia fazer uma try catch para tratar erro, caso venha falhar a operacao de criacao.
     }
 
+    public List<User> findAll() {
+        return repository.findAll();
+    }
+
     public UserResponse findByUid(String uid){
         return createResponse(repository.findByUid(uid));
+    }
+
+    public User findById(String id) {
+        Optional<User> obj = repository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
 
     public UserResponse update(String uid, UserRequest request){

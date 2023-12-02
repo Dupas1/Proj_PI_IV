@@ -2,6 +2,8 @@ package com.woodpecker.backend.controller;
 
 import com.woodpecker.backend.dtos.UserRequest;
 import com.woodpecker.backend.dtos.UserResponse;
+import com.woodpecker.backend.model.FlashCard;
+import com.woodpecker.backend.model.User;
 import com.woodpecker.backend.service.FlashcardService;
 import com.woodpecker.backend.service.UserService;
 import jakarta.validation.Valid;
@@ -23,6 +25,15 @@ import java.util.stream.Collectors;
 public class UserController {
     @Autowired
     UserService service;
+
+    @RequestMapping(method=RequestMethod.GET)
+    public ResponseEntity<List<UserResponse>> findAll(){
+
+        List<User> list =service.findAll();
+        List<UserResponse> listDto = list.stream().map(x -> new UserResponse(x)).collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(listDto);
+    }
 
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody UserRequest request, BindingResult bindingResult){
@@ -65,4 +76,13 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 
     }
+
+    @RequestMapping(value="/{id}/flashcard", method=RequestMethod.GET)
+    public ResponseEntity<List<FlashCard>> findFlashCard(@PathVariable String id){
+
+        User obj = service.findById(id);
+
+        return ResponseEntity.ok().body(obj.getFlashCard());
+    }
+
 }

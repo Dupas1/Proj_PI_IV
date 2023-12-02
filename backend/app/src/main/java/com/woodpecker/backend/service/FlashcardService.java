@@ -24,7 +24,8 @@ public class FlashcardService {
         flashcard.setQuestion(request.getQuestion());
         flashcard.setAnswer(request.getAnswer());
         flashcard.setCategory(request.getCategory());
-        //flashcard.setIdUser(user.getUid());
+
+        flashcard.setIdUser(request.getUid());
 
         repository.save(flashcard);
 
