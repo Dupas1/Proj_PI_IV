@@ -32,7 +32,7 @@ public class PerformanceService {
     }
 
     public PerformanceResponse findByUid(String uid){
-        return createResponse(repository.findByUid(uid));
+        return createResponse(userRepository.findByUid(uid).getPerformance());
     }
 
     public PerformanceResponse createResponse(Performance performance){

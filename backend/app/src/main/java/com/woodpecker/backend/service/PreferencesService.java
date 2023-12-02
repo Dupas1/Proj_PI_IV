@@ -19,7 +19,7 @@ public class PreferencesService {
     UserRepository userRepository;
 
     public PreferencesResponse findByUid(String uid){
-        Preference preferences = repository.findByUid(uid);
+        Preference preferences = userRepository.findByUid(uid).getPreferences();
         return createResponse(preferences);
     }
 

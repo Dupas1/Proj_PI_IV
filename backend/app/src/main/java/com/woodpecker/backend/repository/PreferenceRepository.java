@@ -7,5 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PreferenceRepository extends MongoRepository<Preference, String> {
-    Preference findByUid(String uid);
 }
