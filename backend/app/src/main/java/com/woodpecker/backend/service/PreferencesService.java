@@ -3,6 +3,7 @@ package com.woodpecker.backend.service;
 import com.woodpecker.backend.dtos.PreferencesRequest;
 import com.woodpecker.backend.dtos.PreferencesResponse;
 import com.woodpecker.backend.model.Preference;
+import com.woodpecker.backend.model.Settings;
 import com.woodpecker.backend.repository.PreferenceRepository;
 import com.woodpecker.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,14 @@ public class PreferencesService {
     public PreferencesResponse findByUid(String uid){
         Preference preferences = userRepository.findByUid(uid).getPreferences();
         return createResponse(preferences);
+    }
+
+    public Preference initialize(){
+
+        Preference preference = new Preference();
+
+        repository.save(preference);
+        return preference;
     }
 
     public PreferencesResponse update(String uid, PreferencesRequest request){

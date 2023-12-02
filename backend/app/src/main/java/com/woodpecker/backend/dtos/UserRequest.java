@@ -6,7 +6,6 @@ public class UserRequest {
     private String psw;
     private String name;
     private String email;
-    private Date entryDate;
     private String phone;
     private String gender;
 
@@ -34,13 +33,6 @@ public class UserRequest {
         this.email = email;
     }
 
-    public Date getEntryDate() {
-        return entryDate;
-    }
-
-    public void setEntryDate(Date entryDate) {
-        this.entryDate = entryDate;
-    }
 
     public String getPhone() {
         return phone;

@@ -3,7 +3,10 @@ package com.woodpecker.backend.service;
 import com.woodpecker.backend.dtos.PerformanceRequest;
 import com.woodpecker.backend.dtos.PerformanceResponse;
 import com.woodpecker.backend.model.Performance;
+import com.woodpecker.backend.model.Settings;
 import com.woodpecker.backend.model.User;
+import com.woodpecker.backend.repository.ActivityRepository;
+import com.woodpecker.backend.repository.MemoryRepository;
 import com.woodpecker.backend.repository.PerformanceRepository;
 import com.woodpecker.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,10 @@ public class PerformanceService {
     PerformanceRepository repository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    MemoryRepository memoryRepository;
+    @Autowired
+    ActivityRepository activityRepository;
 
     public PerformanceResponse update(String uid, PerformanceRequest request){
 
@@ -29,6 +36,17 @@ public class PerformanceService {
 
         repository.save(performance);
         return createResponse(performance);
+    }
+
+    public Performance initialize(){
+
+        Performance performance = new Performance();
+
+        memoryRepository.save(performance.getMemory());
+        activityRepository.save(performance.getActivity());
+        repository.save(performance);
+
+        return performance;
     }
 
     public PerformanceResponse findByUid(String uid){

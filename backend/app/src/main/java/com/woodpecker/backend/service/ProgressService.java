@@ -30,6 +30,14 @@ public class ProgressService {
         return createResponse(progress);
     }
 
+    public Progress initialize(){
+
+        Progress progress = new Progress();
+
+        repository.save(progress);
+        return progress;
+    }
+
     public ProgressResponse findByUid(String uid){
         Progress progress = userRepository.findByUid(uid).getProgress();
         return createResponse(progress);

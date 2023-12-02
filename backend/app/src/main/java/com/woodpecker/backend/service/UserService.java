@@ -14,6 +14,14 @@ public class UserService {
 
     @Autowired
     UserRepository repository;
+    @Autowired
+    SettingsService settingsService;
+    @Autowired
+    ProgressService progressService;
+    @Autowired
+    PreferencesService preferencesService;
+    @Autowired
+    PerformanceService performanceService;
 
     public UserResponse create(UserRequest request){
 
@@ -24,10 +32,18 @@ public class UserService {
         user.setPhone(request.getPhone());
         user.setEntryDate(new Date());
         user.setGender(request.getGender());
-        user.setSettings(new Settings());
-        user.setProgress(new Progress());
-        user.setPreferences(new Preference());
-        user.setPerformance(new Performance());
+
+        Settings settings = settingsService.initialize();
+        user.setSettings(settings);
+
+        Progress progress = progressService.initialize();
+        user.setProgress(progress);
+
+        Preference preference = preferencesService.initialize();
+        user.setPreferences(preference);
+
+        Performance performance = performanceService.initialize();
+        user.setPerformance(performance);
 
         repository.save(user);
         return createResponse(user);
