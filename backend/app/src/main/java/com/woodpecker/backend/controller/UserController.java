@@ -4,6 +4,7 @@ import com.woodpecker.backend.dtos.UserRequest;
 import com.woodpecker.backend.dtos.UserResponse;
 import com.woodpecker.backend.model.FlashCard;
 import com.woodpecker.backend.model.User;
+import com.woodpecker.backend.service.Exception.ObjectNotFoundException;
 import com.woodpecker.backend.service.FlashcardService;
 import com.woodpecker.backend.service.UserService;
 import jakarta.validation.Valid;
@@ -44,6 +45,20 @@ public class UserController {
     @GetMapping("/{uid}")
     public ResponseEntity<UserResponse> findUser(@PathVariable String uid){
         return ResponseEntity.ok(service.findByUid(uid));
+    }
+
+    @GetMapping("/login/{email}")
+    public ResponseEntity<?> findByEmail(@PathVariable String email){
+        UserResponse response = service.findByEmail(email);
+        if(response == null){
+            Map<String, Object> responseError = new HashMap<>();
+            responseError.put("timestamp", new Date());
+            responseError.put("status", HttpStatus.NOT_FOUND.value());
+            responseError.put("error:", "Usuário não encontrado.");
+            responseError.put("path", "/user/login");
+            return  new ResponseEntity<>(responseError, HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{uid}")

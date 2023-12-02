@@ -26,6 +26,8 @@ public class UserService {
     @Autowired
     PerformanceService performanceService;
 
+    private static final UserResponse USER_NOT_FOUND = null;
+
     public UserResponse create(UserRequest request){
 
         User user = new User();
@@ -60,6 +62,11 @@ public class UserService {
 
     public UserResponse findByUid(String uid){
         return createResponse(repository.findByUid(uid));
+    }
+
+    public UserResponse findByEmail(String email){
+        Optional<User> user = repository.findByEmail(email);
+        return user.map(this::createResponse).orElse(USER_NOT_FOUND);
     }
 
     public User findById(String id) {
