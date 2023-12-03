@@ -1,7 +1,11 @@
 package Cliente;
 
+import Cliente.PedidoDeCalculoDeRevisao;
+import Cliente.Teclado;
+
 import java.net.*;
 import java.io.*;
+import java.util.Scanner;
 
 public class Cliente
 {
@@ -84,78 +88,20 @@ public class Cliente
 		
         tratadoraDeComunicadoDeDesligamento.start();
 
-        int option=0;
+        String opt="";
+        int numberReview=0;
         do
 		{
-            System.out.print ("Sua opção (1:Facíl , 2:Médio , 3:Difícil , 4:Encerra o servidor)? ");
+            opt="";
+            System.out.print ("Sua opção (1:BEGIN , 2:EASY , 3:MEDIUM ,4:HARD, 5:Encerra o servidor)? ");
 
-            try
-            {
-				option = Teclado.getUmInt();
-			}
-		    catch (Exception erro)
-		    {
-				if (option > 4 || option<1){
-					System.err.println ("Opcao invalida!\n");
-					continue;
-				}
-			}
+            try {
+                  opt = Teclado.getUmString().toUpperCase();
 
-			try {
-				if (option <= 3 || option >= 1) {
-					if (option == 1) {
+                System.out.println();
+                servidor.receba(new PedidoDeCalculoDeRevisao(numberReview,opt));
 
-						try//inplementaçao da data
-						{
-							System.out.println(1);
-
-						} catch (Exception erro) {
-							System.err.println("Valor invalido!\n");
-							continue;
-						}
-
-						servidor.receba(new PedidoDeEscolha(option));
-					} else if (option == 2) {
-
-						try//inplementaçao da data
-						{
-							System.out.println(2);
-
-						} catch (Exception erro) {
-							System.err.println("Valor invalido!\n");
-							continue;
-						}
-
-						servidor.receba(new PedidoDeEscolha(option));
-					} else if (option == 3) {
-
-						try//inplementaçao da data
-						{
-							System.out.println(3);
-
-						} catch (Exception erro) {
-							System.err.println("Valor invalido!\n");
-							continue;
-						}
-
-						servidor.receba(new PedidoDeEscolha(option));
-					}
-				}
-
-				/*
-				else if (option=='=')
-				{
-					servidor.receba (new PedidoDeResultado ());
-					Comunicado comunicado = null;
-					do
-					{
-						comunicado = (Comunicado)servidor.espie ();
-					}
-					while (!(comunicado instanceof Resultado));
-					Resultado resultado = (Resultado)servidor.envie ();
-					System.out.println ("Resultado atual: "+resultado.getValorResultante()+"\n");
-				}*/
-			}
+            }
 			catch (Exception erro)
 			{
 				System.err.println ("Erro de comunicacao com o servidor;");
@@ -164,7 +110,7 @@ public class Cliente
 				System.err.println ("e volte a tentar mais tarde!\n");
 			}
 
-        }while (option != '4'); //pensar na logistica de encerrar o servidor
+        }while (opt != "5"); //pensar na logistica de encerrar o servidor
 
 		try
 		{

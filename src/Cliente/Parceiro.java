@@ -12,7 +12,7 @@ public class Parceiro
     private Socket conexao;
     private ObjectInputStream  receptor;
     private ObjectOutputStream transmissor;
-    
+
     private Comunicado proximoComunicado=null;
 
     private Semaphore mutEx = new Semaphore (1,true);
@@ -89,5 +89,4 @@ public class Parceiro
             throw new Exception ("Erro de desconexao");
         }
     }
-
 }

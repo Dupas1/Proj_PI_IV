@@ -18,17 +18,17 @@ public class TratadoraDeComunicadoDeDesligamento extends Thread
     {
         for(;;)
         {
-			try
-			{
-				if (this.servidor.espie() instanceof ComunicadoDeDesligamento)
-				{
-					System.out.println ("\nO servidor vai ser desligado agora;");
-				    System.err.println ("volte mais tarde!\n");
-				    System.exit(0);
-				}
-			}
-			catch (Exception erro)
-			{}
+            try
+            {
+                if (this.servidor.espie() instanceof ComunicadoDeDesligamento)
+                {
+                    System.out.println ("\nO servidor vai ser desligado agora;");
+                    System.err.println ("volte mais tarde!\n");
+                    System.exit(0);
+                }
+            }
+            catch (Exception erro)
+            {}
         }
     }
 }

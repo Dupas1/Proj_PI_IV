@@ -6,8 +6,8 @@ import java.util.*;
 
 public class SupervisoraDeConexao extends Thread
 {
-    private int option=0;
-    private String dificuldade;
+    private int numberReview;
+    private String difficulty;
     private Parceiro usuario;
     private Socket conexao;
     private ArrayList<Parceiro> usuarios;
@@ -77,33 +77,55 @@ public class SupervisoraDeConexao extends Thread
 
                 if (comunicado==null)
                     return;
-                else if (comunicado instanceof PedidoDeEscolha)
+                else if (comunicado instanceof PedidoDeCalculoDeRevisao)
                 {
-                    PedidoDeEscolha pedidoDeEscolha = (PedidoDeEscolha)comunicado;
+                    PedidoDeCalculoDeRevisao calculo = (PedidoDeCalculoDeRevisao)comunicado;
 
-                    switch (pedidoDeEscolha.getOption())
+                    if (calculo.getDificulty() == "BEGIN")
                     {
-                        case 1:
-                            this.option = pedidoDeEscolha.getOption();
-                            this.dificuldade = pedidoDeEscolha.getDificuldade();
-                            break;
+                        this.difficulty = calculo.getDificulty();
+                        this.numberReview = calculo.getNumberReview();
+                        Resultado x = new Resultado();
 
-                        case 2:
-                            this.option = pedidoDeEscolha.getOption();
-                            this.dificuldade = pedidoDeEscolha.getDificuldade();;
-                            break;
+                        x.setValorResultante(1);
 
-                        case 3:
-                            this.option = pedidoDeEscolha.getOption();
-                            this.dificuldade = pedidoDeEscolha.getDificuldade();;
-                            break;
+                        this.usuario.receba(x);
+                        break;
+                    }
+                    else if(calculo.getDificulty() == "EASY")
+                    {
+                        this.difficulty = calculo.getDificulty();
+                        this.numberReview = calculo.getNumberReview();
+                        System.out.println(2);
+                        break;
+                    }
+                    else if(calculo.getDificulty() == "MEDIUM")
+                    {
+                        this.difficulty = calculo.getDificulty();
+                        this.numberReview = calculo.getNumberReview();
+                        System.out.println(3);
+                        break;
+                    }
+                    else if(calculo.getDificulty() == "HARD")
+                    {
+                        this.difficulty = calculo.getDificulty();
+                        this.numberReview = calculo.getNumberReview();
+                        System.out.println(4);
+                        break;
+                    }
+                    else {
+
+                        this.difficulty = calculo.getDificulty();
+                        this.numberReview = calculo.getNumberReview();
+                        System.out.println("WRONG");
+                        break;
 
                     }
+
+
+
                 }
-                else if (comunicado instanceof PedidoDeDificuldade)
-                {
-                    this.usuario.receba (new Dificuldade (this.dificuldade));
-                }
+
                 else if (comunicado instanceof PedidoParaSair)
                 {
                     synchronized (this.usuarios)

@@ -8,13 +8,17 @@ public class AceitadoraDeConexao extends Thread
     private ServerSocket        pedido;
     private ArrayList<Parceiro> usuarios;
 
-    public AceitadoraDeConexao(String porta, ArrayList<Parceiro> usuarios)throws Exception
+    public AceitadoraDeConexao
+            (String porta, ArrayList<Parceiro> usuarios)
+            throws Exception
     {
         if (porta==null)
             throw new Exception ("Porta ausente");
+
         try
         {
-            this.pedido = new ServerSocket (Integer.parseInt(porta));
+            this.pedido =
+                    new ServerSocket (Integer.parseInt(porta));
         }
         catch (Exception  erro)
         {
