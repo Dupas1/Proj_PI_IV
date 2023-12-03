@@ -2,6 +2,7 @@ package com.woodpecker.backend.controller;
 
 import com.woodpecker.backend.dtos.FlashcardRequest;
 import com.woodpecker.backend.dtos.FlashcardResponse;
+import com.woodpecker.backend.model.FlashCard;
 import com.woodpecker.backend.service.FlashcardService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,4 +52,14 @@ public class FlashcardController {
     public ResponseEntity<List<FlashcardResponse>> getAll(){
         return ResponseEntity.ok(service.getAll());
     }
+
+    @RequestMapping(value="/{id}", method=RequestMethod.GET)
+    public ResponseEntity<FlashCard> findById(@PathVariable String id){
+
+        FlashCard obj = service.findById(id);
+
+        return ResponseEntity.ok().body(obj);
+    }
 }
+
+

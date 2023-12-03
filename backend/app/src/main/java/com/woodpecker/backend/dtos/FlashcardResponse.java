@@ -2,6 +2,7 @@ package com.woodpecker.backend.dtos;
 
 import com.woodpecker.backend.model.Category;
 import com.woodpecker.backend.model.Difficulty;
+import com.woodpecker.backend.model.FlashCard;
 import com.woodpecker.backend.model.User;
 
 import java.util.Date;
@@ -17,6 +18,20 @@ public class FlashcardResponse
     private int numberReview;
 
     private String categoryId;
+
+    public FlashcardResponse(){}
+
+    public FlashcardResponse(FlashCard x) {
+        id = x.getId();
+        question = x.getQuestion();
+        answer = x.getAnswer();
+        category = x.getCategory();
+        difficulty = x.getDifficulty();
+        timeSkip = x.getTimeSkip();
+        numberReview = x.getNumberReview();
+    }
+
+
 
     public String getId() {
         return id;
