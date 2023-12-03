@@ -25,15 +25,22 @@ export default function Login01() {
         console.log(`Making a POST request to: ${api.defaults.baseURL}${url}`);
         console.log(` ${email}, ${psw}`)
         try {
-            const response = await api.post(url,{ name, gender, email, psw, phone });
+            const response = await api.post(url,{email, psw});
             console.log("response",response);
+            if (response.status === 200) {
                 window.alert("Usuário Entrando...");
-                navigate("/");
-            }catch(error){
-            window.alert("Erro ao entrar usuário");
-            console.error("Error message",error.message);
+                navigate("/telahome");
+            } else {
+                window.alert("Erro ao entrar :(");
+                console.error("Error message", error.message);
+                console.error("Error response", error.response);
+            }
+        } catch (error) {
+            window.alert("Erro ao encontrar usuário");
+            console.error("Error message", error.message);
             console.error("Error response", error.response);
         }
+            
     };
 
     return (
@@ -67,9 +74,8 @@ export default function Login01() {
                             />
                         </div>
                         <div className="button-group">
-                            <Link to="/telahome">
+                           
                                 <button type="submit">ENTRAR</button>
-                            </Link>
                             <Link to ="/cadastropage">
                             <button type="button">CADASTRAR-SE</button>
                             </Link>

@@ -47,8 +47,7 @@ export default function Cadastro() {
             console.log("response", response);
             if (response.status === 200) {
                 window.alert("Usuário cadastrado com sucesso, voce será redirecionado para tela de login!");
-                //navigate("/");
-                <Link to="/">Ir para tela de login</Link>;
+                navigate("/");
             } else {
                 window.alert("Erro ao cadastrar usuário");
                 console.error("Error message", error.message);
