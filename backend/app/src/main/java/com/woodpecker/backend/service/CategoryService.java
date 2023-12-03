@@ -30,7 +30,7 @@ public class CategoryService {
 
     public List<CategoryResponse> findAllByUid(String uid){
         List<CategoryResponse> responses = new ArrayList<>();
-        List<Category> categories = repository.findAllByUid(uid);
+        List<Category> categories = repository.findAllByUserId(uid);
 
         if(!categories.isEmpty()){
             categories.forEach( category -> responses.add(createResponse(category)));
