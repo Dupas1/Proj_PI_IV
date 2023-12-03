@@ -19,17 +19,26 @@ public class FlashcardService {
     @Autowired
     private FlashcardRepository repository;
 
-    public FlashcardResponse create(FlashcardRequest request){
+    public FlashcardResponse create(String categoryId, FlashcardRequest request){
         FlashCard flashcard = new FlashCard();
         flashcard.setQuestion(request.getQuestion());
         flashcard.setAnswer(request.getAnswer());
         flashcard.setCategory(request.getCategory());
-
-        flashcard.setIdUser(request.getUid());
+        flashcard.setCategoryId(categoryId);
 
         repository.save(flashcard);
 
         return createResponse(flashcard);
+    }
+
+    public List<FlashcardResponse> findAllByCategoryId(String categoryId){
+        List<FlashcardResponse> responses = new ArrayList<>();
+        List<FlashCard> flashCards = repository.findAllByCategoryId(categoryId);
+        if(!flashCards.isEmpty()) {
+            flashCards.forEach(flashCard -> responses.add(createResponse(flashCard)));
+            return responses;
+        }
+        return null;
     }
 
     public List<FlashcardResponse> getAll() {
@@ -53,6 +62,7 @@ public class FlashcardService {
         response.setDifficulty(flashcard.getDifficulty());
         response.setTimeSkip(flashcard.getTimeSkip());
         response.setNumberReview(flashcard.getNumberReview());
+        response.setCategoryId(flashcard.getCategoryId());
 
         return response;
     }

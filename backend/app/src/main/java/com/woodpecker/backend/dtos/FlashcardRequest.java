@@ -18,19 +18,9 @@ public class FlashcardRequest {
     @NotBlank(message = "Answer cannot be blank.")
     @NotNull(message = "Answer cannot be null.")
     private String answer;
-    @ValidCategory(message = "Category is not valid.")
-    private Category category;
+    private String category;
     private Difficulty difficulty;
 
-    private User uid;
-
-    public User getUid() {
-        return uid;
-    }
-
-    public void setIdUser(User uid) {
-        this.uid = uid;
-    }
 
     public String getQuestion() {
         return question;
@@ -48,11 +38,11 @@ public class FlashcardRequest {
         this.answer = answer;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

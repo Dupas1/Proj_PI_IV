@@ -12,8 +12,7 @@ public class FlashCard {
     private String id;
     private String question;
     private String answer;
-    @DBRef(lazy = true)
-    private Category category;
+    private String category;
     private Difficulty difficulty = Difficulty.BEGIN;
     private Date timeSkip = new Date();
     private int numberReview = 0;
@@ -21,7 +20,7 @@ public class FlashCard {
     //TODO: Criar uma variavel de referencia para o tema relacionado a esse flashcard.
     //TODO: Criar uma classe para Temas
 
-    private User uid;
+    private String categoryId;
 
     public String getId() {
         return id;
@@ -47,11 +46,11 @@ public class FlashCard {
         this.answer = answer;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -79,13 +78,11 @@ public class FlashCard {
         this.numberReview = numberReview;
     }
 
-    public User getUid() {
-        return uid;
-    }
+    public String getCategoryId() {return categoryId;}
 
 
-    public void setIdUser(User uid) {
-        this.uid = uid;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
 }

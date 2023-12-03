@@ -52,9 +52,11 @@ public class UserService {
         Performance performance = performanceService.initialize();
         user.setPerformance(performance);
 
-        categoryService.initializeCategory(user.getUid());
-
         repository.save(user);
+        Optional<User> userSaved = repository.findByEmail(user.getEmail());
+
+        categoryService.initialize(userSaved.get().getUid());
+
         return createResponse(user);
 
         //poderia fazer uma try catch para tratar erro, caso venha falhar a operacao de criacao.

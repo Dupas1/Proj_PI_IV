@@ -24,8 +24,8 @@ public class FlashcardController {
     @Autowired
     private FlashcardService service;
 
-    @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody FlashcardRequest request, BindingResult bindingResult){
+    @PostMapping("/{categoryId}")
+    public ResponseEntity<?> create(@PathVariable String categoryId, @Valid @RequestBody FlashcardRequest request, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             List<String> validationErrors = bindingResult.getFieldErrors().stream()
                     .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
@@ -39,7 +39,12 @@ public class FlashcardController {
 
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        return ResponseEntity.ok(service.create(request));
+        return ResponseEntity.ok(service.create(categoryId, request));
+    }
+
+    @GetMapping("/{categoryId}")
+    public ResponseEntity<List<FlashcardResponse>> findAllByCategoryId(@PathVariable String categoryId){
+        return ResponseEntity.ok(service.findAllByCategoryId(categoryId));
     }
 
     @GetMapping

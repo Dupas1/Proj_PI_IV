@@ -11,12 +11,12 @@ public class FlashcardResponse
     private String id;
     private String question;
     private String answer;
-    private Category category;
+    private String category;
     private Difficulty difficulty;
     private Date timeSkip;
     private int numberReview;
 
-    private User Uid;
+    private String categoryId;
 
     public String getId() {
         return id;
@@ -42,11 +42,11 @@ public class FlashcardResponse
         this.answer = answer;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -74,11 +74,11 @@ public class FlashcardResponse
         this.numberReview = numberReview;
     }
 
-    public User getUid() {
-        return Uid;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setIdUser(User uid) {
-        this.Uid = uid;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 }

@@ -17,7 +17,7 @@ public class CategoryService {
     @Autowired
     CategoryRepository repository;
 
-    public void initializeCategory(String uid){
+    public void initialize(String uid){
         Category category = new Category("Sem tema", 0, uid);
         repository.save(category);
     }

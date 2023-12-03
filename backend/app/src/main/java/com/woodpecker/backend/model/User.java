@@ -31,10 +31,6 @@ public class User {
     @DBRef(lazy = true)
     private List<FlashCard> flashCard = new ArrayList<>();
 
-    public User() {
-        this.uid = UUID.randomUUID().toString();
-    }
-
     public List<FlashCard> getFlashCard() {
         return flashCard;
     }
