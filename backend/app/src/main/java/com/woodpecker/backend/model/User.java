@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Document(collection = "users")
 public class User {
@@ -29,6 +30,10 @@ public class User {
     private Progress progress;
     @DBRef(lazy = true)
     private List<FlashCard> flashCard = new ArrayList<>();
+
+    public User() {
+        this.uid = UUID.randomUUID().toString();
+    }
 
     public List<FlashCard> getFlashCard() {
         return flashCard;

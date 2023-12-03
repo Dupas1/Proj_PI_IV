@@ -22,7 +22,7 @@ export default function Login01() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await api.post("/login/{email}",{ email, psw });
+            const response = await api.post("user/login/{email}",{ email, psw });
             console.log("response",response);
                 window.alert("Usuário entrando...");
                 navigate("/");

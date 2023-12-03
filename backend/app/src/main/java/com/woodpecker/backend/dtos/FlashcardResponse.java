@@ -1,5 +1,6 @@
 package com.woodpecker.backend.dtos;
 
+import com.woodpecker.backend.model.Category;
 import com.woodpecker.backend.model.Difficulty;
 import com.woodpecker.backend.model.User;
 
@@ -10,7 +11,7 @@ public class FlashcardResponse
     private String id;
     private String question;
     private String answer;
-    private String category;
+    private Category category;
     private Difficulty difficulty;
     private Date timeSkip;
     private int numberReview;
@@ -41,11 +42,11 @@ public class FlashcardResponse
         this.answer = answer;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

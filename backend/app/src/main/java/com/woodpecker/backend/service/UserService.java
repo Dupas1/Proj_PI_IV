@@ -25,6 +25,8 @@ public class UserService {
     PreferencesService preferencesService;
     @Autowired
     PerformanceService performanceService;
+    @Autowired
+    CategoryService categoryService;
 
     private static final UserResponse USER_NOT_FOUND = null;
 
@@ -49,6 +51,8 @@ public class UserService {
 
         Performance performance = performanceService.initialize();
         user.setPerformance(performance);
+
+        categoryService.initializeCategory(user.getUid());
 
         repository.save(user);
         return createResponse(user);
@@ -95,18 +99,6 @@ public class UserService {
         } catch(Exception e){
             return false;
         }
-    }
-
-    public void setSettings(String uid, Settings id){
-        User user = repository.findByUid(uid);
-        user.setSettings(id);
-        repository.save(user);
-    }
-
-    public void setPreferences(String uid, Preference id){
-        User user = repository.findByUid(uid);
-        user.setPreferences(id);
-        repository.save(user);
     }
 
     private UserResponse createResponse(User user){

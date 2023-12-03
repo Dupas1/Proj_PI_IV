@@ -1,5 +1,6 @@
 package com.woodpecker.backend.dtos;
 
+import com.woodpecker.backend.model.Category;
 import com.woodpecker.backend.model.Difficulty;
 import com.woodpecker.backend.model.User;
 import com.woodpecker.backend.validation.ValidCategory;
@@ -18,7 +19,7 @@ public class FlashcardRequest {
     @NotNull(message = "Answer cannot be null.")
     private String answer;
     @ValidCategory(message = "Category is not valid.")
-    private String category;
+    private Category category;
     private Difficulty difficulty;
 
     private User uid;
@@ -47,11 +48,11 @@ public class FlashcardRequest {
         this.answer = answer;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

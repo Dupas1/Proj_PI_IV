@@ -24,7 +24,7 @@ public class FlashcardController {
     @Autowired
     private FlashcardService service;
 
-    @PostMapping    //isso significa que quando requisitar para o endpoint  /flashcard irá criar um flashcard
+    @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody FlashcardRequest request, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             List<String> validationErrors = bindingResult.getFieldErrors().stream()

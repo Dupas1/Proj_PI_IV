@@ -1,6 +1,7 @@
 package com.woodpecker.backend.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -11,7 +12,8 @@ public class FlashCard {
     private String id;
     private String question;
     private String answer;
-    private String category;
+    @DBRef(lazy = true)
+    private Category category;
     private Difficulty difficulty = Difficulty.BEGIN;
     private Date timeSkip = new Date();
     private int numberReview = 0;
@@ -45,11 +47,11 @@ public class FlashCard {
         this.answer = answer;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
