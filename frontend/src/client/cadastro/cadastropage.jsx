@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import api from '../../services/api/index.js';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
 
 
 export default function Cadastro() {
@@ -41,16 +43,24 @@ export default function Cadastro() {
         console.log(`Making a POST request to: ${api.defaults.baseURL}${url}`);
         console.log(`${phone}, ${name}, ${gender}, ${email}, ${psw}`)
         try {
-            const response = await api.post(url,{ name, gender, email, psw, phone });
-            console.log("response",response);
+            const response = await api.post(url, { name, gender, email, psw, phone });
+            console.log("response", response);
+            if (response.status === 200) {
                 window.alert("Usuário cadastrado com sucesso, voce será redirecionado para tela de login!");
-                navigate("/");
-            }catch(error){
+                //navigate("/");
+                <Link to="/">Ir para tela de login</Link>;
+            } else {
+                window.alert("Erro ao cadastrar usuário");
+                console.error("Error message", error.message);
+                console.error("Error response", error.response);
+            }
+        } catch (error) {
             window.alert("Erro ao cadastrar usuário");
-            console.error("Error message",error.message);
+            console.error("Error message", error.message);
             console.error("Error response", error.response);
         }
     };
+
 
     return (
         <div className="container">
@@ -121,7 +131,7 @@ export default function Cadastro() {
                         </div>
                     </form>
                 </div>
-                </div>
-                </div>
+            </div>
+        </div>
     );
 }

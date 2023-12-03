@@ -16,19 +16,23 @@ export default function Login01() {
         else if (name === 'password') setPassword(value);
     };
 
+    
     const navigate = useNavigate();
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const url = `/login/${email}`;
+        console.log(`Making a POST request to: ${api.defaults.baseURL}${url}`);
+        console.log(` ${email}, ${psw}`)
         try {
-            const response = await api.post("user/login/{email}",{ email, psw });
+            const response = await api.post(url,{ name, gender, email, psw, phone });
             console.log("response",response);
-                window.alert("Usuário entrando...");
+                window.alert("Usuário Entrando...");
                 navigate("/");
             }catch(error){
-            window.alert("Algo deu errado :(");
-            console.log(error.message);
+            window.alert("Erro ao entrar usuário");
+            console.error("Error message",error.message);
+            console.error("Error response", error.response);
         }
     };
 
