@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Document(collection = "flashcards")
@@ -14,7 +15,7 @@ public class FlashCard {
     private String answer;
     private String category;
     private Difficulty difficulty = Difficulty.BEGIN;
-    private Date timeSkip = new Date();
+    private LocalDate timeSkip = LocalDate.now();
     private int numberReview = 0;
 
     //TODO: Criar uma variavel de referencia para o tema relacionado a esse flashcard.
@@ -62,11 +63,11 @@ public class FlashCard {
         this.difficulty = difficulty;
     }
 
-    public Date getTimeSkip() {
+    public LocalDate getTimeSkip() {
         return timeSkip;
     }
 
-    public void setTimeSkip(Date timeSkip) {
+    public void setTimeSkip(LocalDate timeSkip) {
         this.timeSkip = timeSkip;
     }
 

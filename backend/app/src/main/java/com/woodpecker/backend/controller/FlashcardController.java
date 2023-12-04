@@ -60,6 +60,40 @@ public class FlashcardController {
 
         return ResponseEntity.ok().body(obj);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateByUser(@PathVariable String id, @Valid @RequestBody FlashcardRequest request, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) handleErrors(bindingResult);
+        return ResponseEntity.ok(service.updateByUser(id,request));
+    }
+
+    @PutMapping("/review/{id}")
+    public ResponseEntity<?> updateByReview(@PathVariable String id, @Valid @RequestBody FlashcardRequest request) throws Exception{
+        if(request.getDifficulty() == null){
+            Map<String, Object> response = new HashMap<>();
+            response.put("timestamp", new Date());
+            response.put("status", HttpStatus.BAD_REQUEST.value());
+            response.put("errors", "Dificuldade nula.");
+            response.put("path", "/flashcard");
+        }
+        return ResponseEntity.ok(service.udpateByReview(id, request));
+    }
+
+    private ResponseEntity<?> handleErrors(BindingResult bindingResult){
+
+        List<String> validationErrors = bindingResult.getFieldErrors().stream()
+                .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
+                .collect(Collectors.toList());
+        //criando resposta de erro personalizada
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", new Date());
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("errors", validationErrors);
+        response.put("path", "/flashcard");
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+
+    }
 }
 
 

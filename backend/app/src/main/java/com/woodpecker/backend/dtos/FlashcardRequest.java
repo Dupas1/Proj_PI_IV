@@ -19,7 +19,8 @@ public class FlashcardRequest {
     @NotNull(message = "Answer cannot be null.")
     private String answer;
     private String category;
-    private Difficulty difficulty;
+    private String difficulty;
+    private int numberReview;
 
 
     public String getQuestion() {
@@ -46,12 +47,19 @@ public class FlashcardRequest {
         this.category = category;
     }
 
-    public Difficulty getDifficulty() {
+    public String getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(Difficulty difficulty) {
+    public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
 
+    public int getNumberReview() {
+        return numberReview;
+    }
+
+    public void setNumberReview(int numberReview) {
+        this.numberReview = numberReview;
+    }
 }

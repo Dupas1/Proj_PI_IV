@@ -4,7 +4,9 @@ import com.woodpecker.backend.model.Category;
 import com.woodpecker.backend.model.Difficulty;
 import com.woodpecker.backend.model.FlashCard;
 import com.woodpecker.backend.model.User;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class FlashcardResponse
@@ -14,7 +16,7 @@ public class FlashcardResponse
     private String answer;
     private String category;
     private Difficulty difficulty;
-    private Date timeSkip;
+    private LocalDate timeSkip;
     private int numberReview;
 
     private String categoryId;
@@ -73,11 +75,11 @@ public class FlashcardResponse
         this.difficulty = difficulty;
     }
 
-    public Date getTimeSkip() {
+    public LocalDate getTimeSkip() {
         return timeSkip;
     }
 
-    public void setTimeSkip(Date timeSkip) {
+    public void setTimeSkip(LocalDate timeSkip) {
         this.timeSkip = timeSkip;
     }
 

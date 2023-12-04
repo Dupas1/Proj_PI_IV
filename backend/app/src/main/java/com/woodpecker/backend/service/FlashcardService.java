@@ -10,6 +10,7 @@ import com.woodpecker.backend.service.Exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +32,25 @@ public class FlashcardService {
         repository.save(flashcard);
 
         return createResponse(flashcard);
+    }
+
+    public FlashcardResponse updateByUser(String id, FlashcardRequest request){
+        Optional<FlashCard> flashCard = repository.findById(id);
+        flashCard.get().setCategory(request.getCategory());
+        flashCard.get().setQuestion(request.getQuestion());
+        flashCard.get().setAnswer(request.getAnswer());
+        return createResponse(flashCard.get());
+    }
+
+    public FlashcardResponse udpateByReview(String id, FlashcardRequest request) throws Exception{
+
+        Optional<FlashCard> flashCard = repository.findById(id);
+        ReviewService reviewService = new ReviewService();
+        LocalDate finalDate = reviewService.calculateReview(request.getDifficulty(),request.getNumberReview());
+        flashCard.get().setTimeSkip(finalDate);
+        flashCard.get().setNumberReview(flashCard.get().getNumberReview() + 1);
+
+        return createResponse(flashCard.get());
     }
 
     public List<FlashcardResponse> findAllByCategoryId(String categoryId){

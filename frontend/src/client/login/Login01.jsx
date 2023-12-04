@@ -21,11 +21,11 @@ export default function Login01() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const url = `/login/${email}`;
+        const url = `user/login/${email}`;
         console.log(`Making a POST request to: ${api.defaults.baseURL}${url}`);
         console.log(` ${email}, ${psw}`)
         try {
-            const response = await api.post(url,{email, psw});
+            const response = await api.get(url);
             console.log("response",response);
             if (response.status === 200) {
                 window.alert("Usuário Entrando...");
