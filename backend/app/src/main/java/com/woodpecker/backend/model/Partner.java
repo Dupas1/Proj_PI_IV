@@ -11,7 +11,7 @@ public class Partner {
     private ObjectInputStream receptor;
     private ObjectOutputStream transmissor;
 
-    private Order proximoOrder =null;
+    private Order currentOrder =null;
 
     private Semaphore mutEx = new Semaphore (1,true);
 
@@ -49,9 +49,9 @@ public class Partner {
         try
         {
             this.mutEx.acquireUninterruptibly();
-            if (this.proximoOrder ==null) this.proximoOrder = (Order)this.receptor.readObject();
+            if (this.currentOrder ==null) this.currentOrder = (Order)this.receptor.readObject();
             this.mutEx.release();
-            return this.proximoOrder;
+            return this.currentOrder;
         }
         catch (Exception erro)
         {
@@ -63,9 +63,9 @@ public class Partner {
     {
         try
         {
-            if (this.proximoOrder ==null) this.proximoOrder = (Order)this.receptor.readObject();
-            Order ret = this.proximoOrder;
-            this.proximoOrder = null;
+            if (this.currentOrder ==null) this.currentOrder = (Order)this.receptor.readObject();
+            Order ret = this.currentOrder;
+            this.currentOrder = null;
             return ret;
         }
         catch (Exception erro)
