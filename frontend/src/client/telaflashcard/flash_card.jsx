@@ -1,20 +1,44 @@
 // FlashCard.js
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Popup from './popup'; // Importando o componente Popu
 import './flash_card.css';
+import { useParams } from 'react-router-dom';
+import api from '../../services/api';
 
 export default function FlashCard() {
+    const params = useParams();
     const [flashCards, setFlashCards] = useState([]);
-    const [showPopup, setShowPopup] = useState(false);
-    const [newCard, setNewCard] = useState({ tipo: '', pergunta: '', resposta: '' });
+    const [showPopup, setShowPopup] = useState(true);
+    const [newCard, setNewCard] = useState({ tipo: params.categoryName, pergunta: '', resposta: '' });
 
-    const handleAddCard = () => {
-        setFlashCards([...flashCards, newCard]);
-        setNewCard({ tipo: '', pergunta: '', resposta: '' });
-        setShowPopup(false);
+    const handleAddCard = async() => {
+        try {
+            if (newCard.pergunta.trim().length === 0 || newCard.resposta.trim().length === 0 ) return;
+            if(params.categoryId === null) window.location.href = '/studyspace';
+            const response = await api.post(`/flashcard/${params.categoryId}`, {
+                question: newCard.pergunta,
+                answer: newCard.resposta,
+            });    
+            setFlashCards([...flashCards, response.data]);
+            setNewCard({ tipo: params.categoryName, pergunta: '', resposta: '' });
+            setShowPopup(false);
+        } catch (error) {
+            console.log(error);
+        }
     };
+
+    const getFlashCards = async() => {
+        const response = await api.get(`/flashcard/${params.categoryId}`);
+        console.log("Flashcards list",response.data);
+        setFlashCards(response.data);
+
+    };
+
+    useEffect(()=>{
+        getFlashCards();
+    },[])
 
     return (
         <div className="allfc">
@@ -25,7 +49,7 @@ export default function FlashCard() {
                             <Link to="/studyspace">
                                 <img className="imgvoltar" src="Voltar.PNG" alt="Voltar" />
                             </Link>
-                            <h1 className="titlesfc">Mongo DB</h1>
+                            <h1 className="titlesfc"></h1>
                         </div>
                         <div className="buttonfc">
                             <button className="button2fc" onClick={() => setShowPopup(true)}>
@@ -43,11 +67,11 @@ export default function FlashCard() {
                     )}
 
                     <div className="flashcard-container">
-                        {flashCards.map((card, index) => (
+                        {flashCards.length > 0 && flashCards.map((card, index) => (
                             <div key={index} className="flashcard">
-                                <p>Tipo: {card.tipo}</p>
-                                <p>Pergunta: {card.pergunta}</p>
-                                <p>Resposta: {card.resposta}</p>
+                                <p>Tipo: {params.categoryName}</p>
+                                <p>Pergunta: {card.question}</p>
+                                <p>Resposta: {card.answer}</p>
                             </div>
                         ))}
                     </div>

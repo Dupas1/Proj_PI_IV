@@ -17,7 +17,7 @@ function App() {
           <Route path='/telaconfig' element={<Config />} />
           <Route path='/telahome' element={<First />} />
           <Route path='/profile' element={<Prof />} />
-          <Route path='/flashCard' element={<FlashCard />} />
+          <Route path='/flashCard/:categoryName/:categoryId' element={<FlashCard />} />
           <Route path='/cadastropage' element={<Cadastro />} />
         </Routes>
       </Router>

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './login.css';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../../services/api'
+import api from '../../services/api/index.js';
 
 
 
@@ -21,14 +21,13 @@ export default function Login01() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const url = `/login/${email}`;
+        const url = `/user/login/${email}`;
         console.log(`Making a POST request to: ${api.defaults.baseURL}${url}`);
         console.log(` ${email}, ${psw}`)
         try {
-            const response = await api.post(url,{email, psw});
-            console.log("response",response);
+            const response = await api.get(url);
             if (response.status === 200) {
-                window.alert("Usuário Entrando...");
+                sessionStorage.setItem('uid', response.data.uid);
                 navigate("/telahome");
             } else {
                 window.alert("Erro ao entrar :(");
