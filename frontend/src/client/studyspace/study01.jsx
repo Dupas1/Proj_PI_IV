@@ -1,7 +1,70 @@
 import './study.css';
 import { Link } from 'react-router-dom';
-
+import Popup from './popupstudyspace.jsx';
+import { useState, useEffect } from 'react';
+import api from '../../services/api';
+import { useNavigate } from 'react-router-dom';
+import PopupQuiz from './PopupQuiz';
 const Studyspace = () => {
+
+    const [showQuizPopup, setShowQuizPopup] = useState(false);
+    const [flashcards, setFlashCards] = useState([]);
+    const [flashcardPopup, setFlashcardPopup] = useState(null);
+
+    const getFlashCards = async () => {
+        try {
+            const uid = sessionStorage.getItem("uid");
+            console.log(uid);
+            if (uid == null) window.location.href = "/login";
+            const response = await api.get(`/flashcard`);
+            console.log("flashcardsss", response.data);
+            setFlashCards(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getFlashCards();
+    }, []);
+
+    const [showPopup, setShowPopup] = useState(false);
+    const [categoryName, setCategoryName] = useState('');
+
+    const handleCreateCategory = async () => {
+        try {
+            const uid = sessionStorage.getItem("uid");
+            console.log(uid);
+            console.log(categoryName);
+            if (uid == null) window.location.href = "/login";
+            const response = await api.post(`/category/${uid}`, { name: categoryName });
+            setCategoriesList([...categoriesList, response.data]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const [categoriesList, setCategoriesList] = useState([]);
+
+    const getCategories = async () => {
+        try {
+            const uid = sessionStorage.getItem("uid");
+            console.log(uid);
+            if (uid == null) window.location.href = "/login";
+            const response = await api.get(`/category/${uid}`);
+            console.log(response.data);
+            setCategoriesList(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    useEffect(() => {
+        getCategories();
+    }, [])
+
+    const navigate = useNavigate();
     return (
         <div className='all'>
             <div className="conteudopag">
@@ -9,60 +72,72 @@ const Studyspace = () => {
                     <div className='header'>Seus Flashcards</div>
                     <div className='temas'>Temas</div>
 
-                    <div className='card-conteudo'>
-                        <div className='card1'>
-                            <h3>Mongo Db</h3>
-                            <p>Nível de prioridade III</p>
-                            <p>20 Itens</p>
-                        </div>
-
-                        <div className='card2'>
-                            <h3>Java</h3>
-                            <p>Nível de prioridade II</p>
-                            <p>10 Itens</p>
-                        </div>
-
-                        <div className='card3'>
-                            <h3>Calculo</h3>
-                            <p>Nível de prioridade III</p>
-                            <p>25 Itens</p>
-                        </div>
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        width: '100%',
+                        gap: '10px',
+                        flexWrap: 'wrap',
+                    }}>
+                        {categoriesList.length > 0 &&
+                            categoriesList.map((category, index) =>
+                            (
+                                <div index={index} className='card-conteudo' onClick={() => {
+                                    navigate(`/flashCard/${category.name}/${category.id}`)
+                                }}>
+                                    <div className='card1'>
+                                        <h3>{category.name}</h3>
+                                    </div>
+                                </div>
+                            ))}
                     </div>
-                </div>
 
+
+                    <div className="button-add-category">
+                        <button onClick={() => setShowPopup(true)}>Adicionar Categoria</button>
+                    </div>
+
+                    {showPopup && (
+                        <Popup
+                            categoryName={categoryName}
+                            setCategoryName={setCategoryName}
+                            onSave={handleCreateCategory}
+                        />
+                    )}
+                    {
+                        showQuizPopup && (
+                            <PopupQuiz
+                                open={true}
+                                handleClose={() => setShowQuizPopup(false)}
+                                flashcard={flashcardPopup}
+                            />
+                        )
+                    }
+                </div>
                 <div className='tudoquizzes'>
                     <div className='quizzestitulo'>Quizzes</div>
                     <div className="quizzes-tests-wrapper">
+                        {
+                            flashcards.length > 0 &&
+                            flashcards.map((flashcard, index) => (
+                                <div className="quizz-card" index={index}>
+                                    <div className="quizz-icon">?</div>
+                                    <div className="quizz-details">
+                                        <div className="quizz-question">{flashcard.question}</div>
+                                        {/* <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> */}                                <button
+                                            onClick={() => {
+                                                setShowQuizPopup(true);
+                                                setFlashcardPopup(flashcard);
+                                            }}
+                                        >FAZER QUIZZ</button>
+                                    </div>
+                                </div>
+                            ))
+                        }
 
-                        <div className="quizz-card">
-                            <div className="quizz-icon">?</div>
-                            <div className="quizz-details">
-                                <div className="quizz-question">What is Lorem Ipsum?</div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                <button>FAZER QUIZZ</button>
-                            </div>
-                        </div>
-
-                        <div className="quizz-card">
-                            <div className="quizz-icon">?</div>
-                            <div className="quizz-details">
-                                <div className="quizz-question">Where does it come from?</div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                <button>FAZER QUIZZ</button>
-                            </div>
-
-                        </div>
-
-                        <div className="quizz-card">
-                            <div className="quizz-icon">?</div>
-                            <div className="quizz-details">
-                                <div className="quizz-question">Where does it come from?</div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                <button>FAZER QUIZZ</button>
-                            </div>
-                        </div>
                     </div>
-
 
                 </div>
 

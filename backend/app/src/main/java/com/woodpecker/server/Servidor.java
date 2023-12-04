@@ -20,8 +20,8 @@ public class Servidor
         if (args.length==1)
             porta = args[0];
 
-        ArrayList<Parceiro> usuarios =
-                new ArrayList<Parceiro> ();
+        ArrayList<Partner> usuarios =
+                new ArrayList<Partner> ();
 
         AceitadoraDeConexao aceitadoraDeConexao=null;
         try
@@ -54,14 +54,14 @@ public class Servidor
             {
                 synchronized (usuarios)
                 {
-                    ComunicadoDeDesligamento comunicadoDeDesligamento =
-                            new ComunicadoDeDesligamento ();
+                    ShutdownOrder shutdownOrder =
+                            new ShutdownOrder();
 
-                    for (Parceiro usuario:usuarios)
+                    for (Partner usuario:usuarios)
                     {
                         try
                         {
-                            usuario.receba (comunicadoDeDesligamento);
+                            usuario.receba (shutdownOrder);
                             usuario.adeus  ();
                         }
                         catch (Exception erro)

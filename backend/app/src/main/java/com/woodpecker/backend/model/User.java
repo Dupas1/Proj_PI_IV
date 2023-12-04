@@ -1,9 +1,13 @@
 package com.woodpecker.backend.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Document(collection = "users")
 public class User {
@@ -15,10 +19,25 @@ public class User {
     private Date entryDate;
     private String phone;
     private String gender;
-    private String preferences;
-    private String flashcards;
-    private String performance;
-    private String configurations;
+
+    @DBRef(lazy = true)
+    private Preference preferences;
+    @DBRef(lazy = true)
+    private Performance performance;
+    @DBRef(lazy = true)
+    private Settings settings;
+    @DBRef(lazy = true)
+    private Progress progress;
+    @DBRef(lazy = true)
+    private List<FlashCard> flashCard = new ArrayList<>();
+
+    public List<FlashCard> getFlashCard() {
+        return flashCard;
+    }
+
+    public void setFlashCard(List<FlashCard> flashCard) {
+        this.flashCard = flashCard;
+    }
 
     public String getUid() {
         return uid;
@@ -76,35 +95,35 @@ public class User {
         this.gender = gender;
     }
 
-    public String getPreferences() {
+    public Preference getPreferences() {
         return preferences;
     }
 
-    public void setPreferences(String preferences) {
+    public void setPreferences(Preference preferences) {
         this.preferences = preferences;
     }
 
-    public String getFlashcards() {
-        return flashcards;
-    }
-
-    public void setFlashcards(String flashcards) {
-        this.flashcards = flashcards;
-    }
-
-    public String getPerformance() {
+    public Performance getPerformance() {
         return performance;
     }
 
-    public void setPerformance(String performance) {
+    public void setPerformance(Performance performance) {
         this.performance = performance;
     }
 
-    public String getConfigurations() {
-        return configurations;
+    public Settings getSettings() {
+        return settings;
     }
 
-    public void setConfigurations(String configurations) {
-        this.configurations = configurations;
+    public void setSettings(Settings settings) {
+        this.settings = settings;
+    }
+
+    public Progress getProgress() {
+        return progress;
+    }
+
+    public void setProgress(Progress progress) {
+        this.progress = progress;
     }
 }

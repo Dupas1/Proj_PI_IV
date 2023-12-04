@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface FlashcardRepository extends MongoRepository<FlashCard, String> {
+    List<FlashCard> findAllByCategoryId(String categoryId);
 
 }

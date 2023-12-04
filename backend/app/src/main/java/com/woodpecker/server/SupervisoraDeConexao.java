@@ -2,17 +2,20 @@ package com.woodpecker.server;
 
 import java.io.*;
 import java.net.*;
+import java.time.LocalDate;
 import java.util.*;
 
 public class SupervisoraDeConexao extends Thread
 {
     private double              valor=0;
-    private Parceiro            usuario;
+    private Partner usuario;
     private Socket              conexao;
-    private ArrayList<Parceiro> usuarios;
+    private ArrayList<Partner> usuarios;
+    private String difficulty;
+    private int numberReview;
 
     public SupervisoraDeConexao
-            (Socket conexao, ArrayList<Parceiro> usuarios)
+            (Socket conexao, ArrayList<Partner> usuarios)
             throws Exception
     {
         if (conexao==null)
@@ -62,7 +65,7 @@ public class SupervisoraDeConexao extends Thread
         try
         {
             this.usuario =
-                    new Parceiro (this.conexao,
+                    new Partner(this.conexao,
                             receptor,
                             transmissor);
         }
@@ -76,41 +79,74 @@ public class SupervisoraDeConexao extends Thread
                 this.usuarios.add (this.usuario);
             }
 
-            // TODO: 06/11/2023 Mudar para a lógica do nosso aplicativo
-            /*
             for(;;)
             {
-                Comunicado comunicado = this.usuario.envie ();
+                Order order = this.usuario.envie ();
 
-                if (comunicado==null)
+                if (order==null)
                     return;
-                else if (comunicado instanceof PedidoDeOperacao)
+                else if (order instanceof CalculationReviewOrder)
                 {
-                    PedidoDeOperacao pedidoDeOperacao = (PedidoDeOperacao)comunicado;
+                    CalculationReviewOrder calculationReviewOrder = (CalculationReviewOrder) order;
 
-                    switch (pedidoDeOperacao.getOperacao())
+                    if (calculationReviewOrder.getDificulty() == "BEGIN")
                     {
-                        case '+':
-                            this.valor += pedidoDeOperacao.getValor();
-                            break;
+                        this.difficulty = calculationReviewOrder.getDificulty();
+                        this.numberReview = calculationReviewOrder.getNumberReview();
+                        ResultReview resultReview = new ResultReview();
+                        LocalDate date = LocalDate.now().plusDays(5);
+                        resultReview.setFinalDate(date);
 
-                        case '-':
-                            this.valor -= pedidoDeOperacao.getValor();
-                            break;
+                        this.usuario.receba(resultReview);
+                        break;
+                    }
+                    else if(calculationReviewOrder.getDificulty() == "EASY")
+                    {
+                        this.difficulty = calculationReviewOrder.getDificulty();
+                        this.numberReview = calculationReviewOrder.getNumberReview();
+                        ResultReview resultReview = new ResultReview();
+                        LocalDate date = LocalDate.now().plusDays(15);
+                        resultReview.setFinalDate(date);
 
-                        case '*':
-                            this.valor *= pedidoDeOperacao.getValor();
-                            break;
+                        this.usuario.receba(resultReview);
+                        break;
+                    }
+                    else if(calculationReviewOrder.getDificulty() == "MEDIUM")
+                    {
+                        this.difficulty = calculationReviewOrder.getDificulty();
+                        this.numberReview = calculationReviewOrder.getNumberReview();
+                        ResultReview resultReview = new ResultReview();
+                        LocalDate date = LocalDate.now().plusDays(10);
+                        resultReview.setFinalDate(date);
 
-                        case '/':
-                            this.valor /= pedidoDeOperacao.getValor();
+                        this.usuario.receba(resultReview);
+                        break;
+                    }
+                    else if(calculationReviewOrder.getDificulty() == "HARD")
+                    {
+                        this.difficulty = calculationReviewOrder.getDificulty();
+                        this.numberReview = calculationReviewOrder.getNumberReview();
+                        ResultReview resultReview = new ResultReview();
+                        LocalDate date = LocalDate.now().plusDays(5);
+                        resultReview.setFinalDate(date);
+
+                        this.usuario.receba(resultReview);
+                        break;
+                    }
+                    else {
+
+                        this.difficulty = calculationReviewOrder.getDificulty();
+                        this.numberReview = calculationReviewOrder.getNumberReview();
+                        ResultReview resultReview = new ResultReview();
+                        LocalDate date = LocalDate.now().plusDays(1);
+                        resultReview.setFinalDate(date);
+
+                        this.usuario.receba(resultReview);
+                        break;
+
                     }
                 }
-                else if (comunicado instanceof PedidoDeResultado)
-                {
-                    this.usuario.receba (new Resultado (this.valor));
-                }
-                else if (comunicado instanceof PedidoParaSair)
+                else if (order instanceof ExitOrder)
                 {
                     synchronized (this.usuarios)
                     {
@@ -119,7 +155,6 @@ public class SupervisoraDeConexao extends Thread
                     this.usuario.adeus();
                 }
             }
-            */
         }
         catch (Exception erro)
         {

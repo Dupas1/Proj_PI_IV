@@ -1,8 +1,10 @@
 package com.woodpecker.backend.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Document(collection = "flashcards")
@@ -13,12 +15,13 @@ public class FlashCard {
     private String answer;
     private String category;
     private Difficulty difficulty = Difficulty.BEGIN;
-    private Date timeSkip = new Date();
+    private LocalDate timeSkip = LocalDate.now();
     private int numberReview = 0;
-    //private String uid;
 
-    //41:07
-    //36:05
+    //TODO: Criar uma variavel de referencia para o tema relacionado a esse flashcard.
+    //TODO: Criar uma classe para Temas
+
+    private String categoryId;
 
     public String getId() {
         return id;
@@ -60,11 +63,11 @@ public class FlashCard {
         this.difficulty = difficulty;
     }
 
-    public Date getTimeSkip() {
+    public LocalDate getTimeSkip() {
         return timeSkip;
     }
 
-    public void setTimeSkip(Date timeSkip) {
+    public void setTimeSkip(LocalDate timeSkip) {
         this.timeSkip = timeSkip;
     }
 
@@ -76,11 +79,11 @@ public class FlashCard {
         this.numberReview = numberReview;
     }
 
-    /*public String getIdUser() {
-        return uid;
+    public String getCategoryId() {return categoryId;}
+
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void setIdUser(String idUser) {
-        this.uid = idUser;
-    }*/
 }

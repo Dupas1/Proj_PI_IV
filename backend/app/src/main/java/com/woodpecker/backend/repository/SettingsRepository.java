@@ -8,6 +8,4 @@ import java.util.List;
 
 @Repository
 public interface SettingsRepository extends MongoRepository<Settings, String> {
-
-    Settings findByUid(String uid);
 }

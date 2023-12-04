@@ -7,7 +7,6 @@
     flex-direction: column;
 }
 
-
 .conteudopag {
     flex: 1 auto;
     display: grid;
@@ -17,7 +16,6 @@
      "flashcards-content flashcards-content"
      "quizzes-tests-wrapper testes-content"
      
-
 }
 
 .temas{
@@ -26,7 +24,7 @@
     font-size: 22px;
     font-style: normal;
     font-weight: 400;
-    line-height: 12px; /* 100% */
+    line-height: 12px; 
 }
 
 .header{
@@ -63,7 +61,7 @@
     width: 280px;
     height: 137px;
     border-radius: 8px;
-    margin: 10px; /* To give some space between cards */
+    margin: 10px;
 }
 
 .card-conteudo{
