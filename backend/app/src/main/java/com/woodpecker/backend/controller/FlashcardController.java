@@ -2,6 +2,7 @@ package com.woodpecker.backend.controller;
 
 import com.woodpecker.backend.dtos.FlashcardRequest;
 import com.woodpecker.backend.dtos.FlashcardResponse;
+import com.woodpecker.backend.model.FlashCard;
 import com.woodpecker.backend.service.FlashcardService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,4 +52,48 @@ public class FlashcardController {
     public ResponseEntity<List<FlashcardResponse>> getAll(){
         return ResponseEntity.ok(service.getAll());
     }
+
+    @RequestMapping(value="/{id}", method=RequestMethod.GET)
+    public ResponseEntity<FlashCard> findById(@PathVariable String id){
+
+        FlashCard obj = service.findById(id);
+
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateByUser(@PathVariable String id, @Valid @RequestBody FlashcardRequest request, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) handleErrors(bindingResult);
+        return ResponseEntity.ok(service.updateByUser(id,request));
+    }
+
+    @PutMapping("/review/{id}")
+    public ResponseEntity<?> updateByReview(@PathVariable String id, @Valid @RequestBody FlashcardRequest request) throws Exception{
+        if(request.getDifficulty() == null){
+            Map<String, Object> response = new HashMap<>();
+            response.put("timestamp", new Date());
+            response.put("status", HttpStatus.BAD_REQUEST.value());
+            response.put("errors", "Dificuldade nula.");
+            response.put("path", "/flashcard");
+        }
+        return ResponseEntity.ok(service.udpateByReview(id, request));
+    }
+
+    private ResponseEntity<?> handleErrors(BindingResult bindingResult){
+
+        List<String> validationErrors = bindingResult.getFieldErrors().stream()
+                .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
+                .collect(Collectors.toList());
+        //criando resposta de erro personalizada
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", new Date());
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("errors", validationErrors);
+        response.put("path", "/flashcard");
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+
+    }
 }
+
+

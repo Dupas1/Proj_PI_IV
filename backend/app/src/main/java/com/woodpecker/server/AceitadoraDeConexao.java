@@ -6,10 +6,10 @@ import java.util.*;
 public class AceitadoraDeConexao extends Thread
 {
     private ServerSocket        pedido;
-    private ArrayList<Parceiro> usuarios;
+    private ArrayList<Partner> usuarios;
 
     public AceitadoraDeConexao
-            (String porta, ArrayList<Parceiro> usuarios)
+            (String porta, ArrayList<Partner> usuarios)
             throws Exception
     {
         if (porta==null)

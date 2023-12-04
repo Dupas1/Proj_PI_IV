@@ -6,12 +6,15 @@ import com.woodpecker.backend.model.Difficulty;
 import com.woodpecker.backend.model.FlashCard;
 import com.woodpecker.backend.model.User;
 import com.woodpecker.backend.repository.FlashcardRepository;
+import com.woodpecker.backend.service.Exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FlashcardService {
@@ -29,6 +32,25 @@ public class FlashcardService {
         repository.save(flashcard);
 
         return createResponse(flashcard);
+    }
+
+    public FlashcardResponse updateByUser(String id, FlashcardRequest request){
+        Optional<FlashCard> flashCard = repository.findById(id);
+        flashCard.get().setCategory(request.getCategory());
+        flashCard.get().setQuestion(request.getQuestion());
+        flashCard.get().setAnswer(request.getAnswer());
+        return createResponse(flashCard.get());
+    }
+
+    public FlashcardResponse udpateByReview(String id, FlashcardRequest request) throws Exception{
+
+        Optional<FlashCard> flashCard = repository.findById(id);
+        ReviewService reviewService = new ReviewService();
+        LocalDate finalDate = reviewService.calculateReview(request.getDifficulty(),request.getNumberReview());
+        flashCard.get().setTimeSkip(finalDate);
+        flashCard.get().setNumberReview(flashCard.get().getNumberReview() + 1);
+
+        return createResponse(flashCard.get());
     }
 
     public List<FlashcardResponse> findAllByCategoryId(String categoryId){
@@ -66,4 +88,10 @@ public class FlashcardService {
 
         return response;
     }
+
+    public FlashCard findById(String id) {
+        Optional<FlashCard> obj = repository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+    }
+
 }
