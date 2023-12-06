@@ -1,13 +1,15 @@
 package com.woodpecker.server;
 
 public class CalculationReviewOrder extends Order {
-
     private int numberReview;
     private String difficulty;
 
-    public CalculationReviewOrder(int numberReview, String dificulty) {
+    private static final long serialVersionUID = 1L;
+
+    public CalculationReviewOrder(String difficulty, int numberReview) {
+        super("CalculationReviewOrder");
         this.numberReview = numberReview;
-        this.difficulty = dificulty;
+        this.difficulty = difficulty;
     }
 
     public int getNumberReview() {
@@ -18,17 +20,17 @@ public class CalculationReviewOrder extends Order {
         this.numberReview = numberReview;
     }
 
-    public String getDificulty() {
+    public String getDifficulty() {
         return difficulty;
     }
 
-    public void setDificulty(String dificulty) {
-        this.difficulty = dificulty;
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 
     @Override
     public String toString() {
-        return "PedidoDeCalculoDeRevisao{" +
+        return "CalculationReviewOrder{" +
                 "numberReview=" + numberReview +
                 ", dificulty='" + difficulty + '\'' +
                 '}';

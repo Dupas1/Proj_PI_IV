@@ -1,6 +1,8 @@
 package com.woodpecker.server;
 
 import java.util.*;
+
+import com.google.gson.Gson;
 import com.woodpecker.Teclado;
 
 public class Servidor
@@ -28,7 +30,7 @@ public class Servidor
         {
             aceitadoraDeConexao =
                     new AceitadoraDeConexao (porta, usuarios);
-            aceitadoraDeConexao.start();
+            aceitadoraDeConexao.run();
         }
         catch (Exception erro)
         {
@@ -36,6 +38,7 @@ public class Servidor
             return;
         }
 
+        Gson gson = new Gson();
         for(;;)
         {
             System.out.println ("O servidor esta ativo! Para desativa-lo,");
@@ -61,7 +64,7 @@ public class Servidor
                     {
                         try
                         {
-                            usuario.receba (shutdownOrder);
+                            usuario.receba (gson.toJson(shutdownOrder));
                             usuario.adeus  ();
                         }
                         catch (Exception erro)

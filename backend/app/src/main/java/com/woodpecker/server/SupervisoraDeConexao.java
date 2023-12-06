@@ -4,15 +4,13 @@ import java.io.*;
 import java.net.*;
 import java.time.LocalDate;
 import java.util.*;
-
+import  com.google.gson.Gson;
 public class SupervisoraDeConexao extends Thread
 {
-    private double              valor=0;
     private Partner usuario;
     private Socket              conexao;
     private ArrayList<Partner> usuarios;
-    private String difficulty;
-    private int numberReview;
+
 
     public SupervisoraDeConexao
             (Socket conexao, ArrayList<Partner> usuarios)
@@ -31,11 +29,11 @@ public class SupervisoraDeConexao extends Thread
     public void run ()
     {
 
-        ObjectOutputStream transmissor;
+        PrintWriter transmissor;
         try
         {
             transmissor =
-                    new ObjectOutputStream(
+                    new PrintWriter(
                             this.conexao.getOutputStream());
         }
         catch (Exception erro)
@@ -43,12 +41,11 @@ public class SupervisoraDeConexao extends Thread
             return;
         }
 
-        ObjectInputStream receptor=null;
+        BufferedReader receptor=null;
         try
         {
             receptor=
-                    new ObjectInputStream(
-                            this.conexao.getInputStream());
+                    new BufferedReader( new InputStreamReader(this.conexao.getInputStream()));
         }
         catch (Exception err0)
         {
@@ -72,6 +69,8 @@ public class SupervisoraDeConexao extends Thread
         catch (Exception erro)
         {} // sei que passei os parametros corretos
 
+        Gson gson = new Gson();
+
         try
         {
             synchronized (this.usuarios)
@@ -81,72 +80,68 @@ public class SupervisoraDeConexao extends Thread
 
             for(;;)
             {
-                Order order = this.usuario.envie ();
+                String jsonOrder = this.usuario.envie();
+                Order order = gson.fromJson(jsonOrder,Order.class);
 
                 if (order==null)
                     return;
-                else if (order instanceof CalculationReviewOrder)
+                else if (order.getOrderName().equals("CalculationReviewOrder"))
                 {
-                    CalculationReviewOrder calculationReviewOrder = (CalculationReviewOrder) order;
-
-                    if (calculationReviewOrder.getDificulty() == "BEGIN")
+                    CalculationReviewOrder calculationReviewOrder = gson.fromJson(jsonOrder,CalculationReviewOrder.class);
+                    if (calculationReviewOrder.getDifficulty() == "BEGIN")
                     {
-                        this.difficulty = calculationReviewOrder.getDificulty();
-                        this.numberReview = calculationReviewOrder.getNumberReview();
                         ResultReview resultReview = new ResultReview();
                         LocalDate date = LocalDate.now().plusDays(5);
                         resultReview.setFinalDate(date);
+                        resultReview.setNumberReview(calculationReviewOrder.getNumberReview()+1);
 
-                        this.usuario.receba(resultReview);
+                        this.usuario.receba(gson.toJson(resultReview));
                         break;
                     }
-                    else if(calculationReviewOrder.getDificulty() == "EASY")
+                    else if(calculationReviewOrder.getDifficulty().equals("EASY"))
                     {
-                        this.difficulty = calculationReviewOrder.getDificulty();
-                        this.numberReview = calculationReviewOrder.getNumberReview();
                         ResultReview resultReview = new ResultReview();
-                        LocalDate date = LocalDate.now().plusDays(15);
+                        LocalDate date = LocalDate.now().plusDays(5*calculationReviewOrder.getNumberReview());
                         resultReview.setFinalDate(date);
+                        resultReview.setNumberReview(calculationReviewOrder.getNumberReview()+1);
 
-                        this.usuario.receba(resultReview);
+                        this.usuario.receba(gson.toJson(resultReview));
                         break;
                     }
-                    else if(calculationReviewOrder.getDificulty() == "MEDIUM")
+                    else if(calculationReviewOrder.getDifficulty().equals("MEDIUM"))
                     {
-                        this.difficulty = calculationReviewOrder.getDificulty();
-                        this.numberReview = calculationReviewOrder.getNumberReview();
                         ResultReview resultReview = new ResultReview();
                         LocalDate date = LocalDate.now().plusDays(10);
                         resultReview.setFinalDate(date);
+                        resultReview.setNumberReview(calculationReviewOrder.getNumberReview()+1);
 
-                        this.usuario.receba(resultReview);
+                        this.usuario.receba(gson.toJson(resultReview));
                         break;
                     }
-                    else if(calculationReviewOrder.getDificulty() == "HARD")
+                    else if(calculationReviewOrder.getDifficulty().equals("HARD"))
                     {
-                        this.difficulty = calculationReviewOrder.getDificulty();
-                        this.numberReview = calculationReviewOrder.getNumberReview();
                         ResultReview resultReview = new ResultReview();
-                        LocalDate date = LocalDate.now().plusDays(5);
+                        LocalDate date = LocalDate.now().plusDays((long)(0.5* calculationReviewOrder.getNumberReview()));
                         resultReview.setFinalDate(date);
+                        resultReview.setNumberReview(calculationReviewOrder.getNumberReview()+1);
 
-                        this.usuario.receba(resultReview);
+                        this.usuario.receba(gson.toJson(resultReview));
                         break;
                     }
                     else {
 
-                        this.difficulty = calculationReviewOrder.getDificulty();
-                        this.numberReview = calculationReviewOrder.getNumberReview();
+
                         ResultReview resultReview = new ResultReview();
                         LocalDate date = LocalDate.now().plusDays(1);
                         resultReview.setFinalDate(date);
+                        resultReview.setNumberReview(0);
 
-                        this.usuario.receba(resultReview);
+                        this.usuario.receba(gson.toJson(resultReview));
                         break;
 
                     }
                 }
-                else if (order instanceof ExitOrder)
+                else if (order.getOrderName().equals("ExitOrder"))
                 {
                     synchronized (this.usuarios)
                     {

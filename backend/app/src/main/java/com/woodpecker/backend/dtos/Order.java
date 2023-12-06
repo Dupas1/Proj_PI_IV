@@ -1,4 +1,4 @@
-package com.woodpecker.server;
+package com.woodpecker.backend.dtos;
 
 import java.io.*;
 
@@ -12,5 +12,4 @@ public class Order implements Serializable, Cloneable {
     public String getOrderName(){
         return orderName;
     };
-
 }

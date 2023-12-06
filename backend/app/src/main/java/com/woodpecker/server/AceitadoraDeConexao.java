@@ -53,7 +53,7 @@ public class AceitadoraDeConexao extends Thread
             }
             catch (Exception erro)
             {} // sei que passei parametros corretos para o construtor
-            supervisoraDeConexao.start();
+            supervisoraDeConexao.run();
         }
     }
 }
