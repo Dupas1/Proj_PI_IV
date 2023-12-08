@@ -52,15 +52,20 @@ public class FlashCard {
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        if(category == null) this.category = "Sem Tema";
+        else this.category = category;
     }
 
     public Difficulty getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
+    public void setDifficulty(String difficulty)throws Exception {
+        if(difficulty.equals("EASY")) this.difficulty = Difficulty.EASY;
+        else if(difficulty.equals("MEDIUM")) this.difficulty = Difficulty.MEDIUM;
+        else if(difficulty.equals("HARD")) this.difficulty = Difficulty.HARD;
+        else if(difficulty.equals("WRONG")) this.difficulty = Difficulty.WRONG;
+        else throw new Exception("Dificuldade invalida.");
     }
 
     public LocalDate getTimeSkip() {

@@ -2,6 +2,7 @@ package com.woodpecker.backend.service;
 
 import com.woodpecker.backend.dtos.FlashcardRequest;
 import com.woodpecker.backend.dtos.FlashcardResponse;
+import com.woodpecker.backend.dtos.ResultReview;
 import com.woodpecker.backend.model.Difficulty;
 import com.woodpecker.backend.model.FlashCard;
 import com.woodpecker.backend.model.User;
@@ -46,9 +47,10 @@ public class FlashcardService {
 
         Optional<FlashCard> flashCard = repository.findById(id);
         ReviewService reviewService = new ReviewService();
-        LocalDate finalDate = reviewService.calculateReview(request.getDifficulty(),request.getNumberReview());
-        flashCard.get().setTimeSkip(finalDate);
-        flashCard.get().setNumberReview(flashCard.get().getNumberReview() + 1);
+        ResultReview resultReview = reviewService.calculateReview(request.getDifficulty(),request.getNumberReview());
+        flashCard.get().setTimeSkip(resultReview.getFinalDate());
+        flashCard.get().setNumberReview(resultReview.getNumberReview());
+        flashCard.get().setDifficulty(request.getDifficulty());
 
         return createResponse(flashCard.get());
     }

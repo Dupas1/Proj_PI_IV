@@ -1,7 +1,6 @@
-package com.woodpecker.server;
+package com.woodpecker.backend.dtos;
 
 import java.time.LocalDate;
-
 
 public class ResultReview extends Order {
     private LocalDate finalDate;
@@ -26,6 +25,5 @@ public class ResultReview extends Order {
     public void setNumberReview(int numberReview) {
         this.numberReview = numberReview;
     }
-
 
 }

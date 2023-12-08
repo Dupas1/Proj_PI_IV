@@ -1,12 +1,13 @@
 package com.woodpecker.backend.dtos;
 
-import com.woodpecker.backend.model.Order;
-
 public class CalculationReviewOrder extends Order {
     private int numberReview;
     private String difficulty;
 
+    private static final long serialVersionUID = 1L;
+
     public CalculationReviewOrder(String difficulty, int numberReview) {
+        super("CalculationReviewOrder");
         this.numberReview = numberReview;
         this.difficulty = difficulty;
     }
@@ -25,5 +26,18 @@ public class CalculationReviewOrder extends Order {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+
+    @Override
+    public String toString() {
+        return "CalculationReviewOrder{" +
+                "numberReview=" + numberReview +
+                ", dificulty='" + difficulty + '\'' +
+                '}';
+    }
+
+    @Override
+    public String getOrderName() {
+        return "CalculationReviewOrder";
     }
 }

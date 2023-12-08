@@ -7,16 +7,16 @@ import java.util.concurrent.Semaphore;
 public class Partner
 {
     private Socket             conexao;
-    private ObjectInputStream  receptor;
-    private ObjectOutputStream transmissor;
+    private BufferedReader  receptor;
+    private PrintWriter transmissor;
 
-    private Order proximoOrder =null;
+    private String currentOrder =null;
 
     private Semaphore mutEx = new Semaphore (1,true);
 
     public Partner(Socket             conexao,
-                   ObjectInputStream  receptor,
-                   ObjectOutputStream transmissor)
+                   BufferedReader  receptor,
+                   PrintWriter transmissor)
             throws Exception // se parametro nulos
     {
         if (conexao==null)
@@ -33,27 +33,20 @@ public class Partner
         this.transmissor = transmissor;
     }
 
-    public void receba (Order x) throws Exception
+    public void receba (String x) throws Exception
     {
-        try
-        {
-            this.transmissor.writeObject (x);
-            this.transmissor.flush       ();
-        }
-        catch (IOException erro)
-        {
-            throw new Exception ("Erro de transmissao");
-        }
+        this.transmissor.println (x);
+        this.transmissor.flush       ();
     }
 
-    public Order espie () throws Exception
+    public String espie () throws Exception
     {
         try
         {
             this.mutEx.acquireUninterruptibly();
-            if (this.proximoOrder ==null) this.proximoOrder = (Order)this.receptor.readObject();
+            if (this.currentOrder ==null) this.currentOrder = this.receptor.readLine();
             this.mutEx.release();
-            return this.proximoOrder;
+            return this.currentOrder;
         }
         catch (Exception erro)
         {
@@ -61,18 +54,18 @@ public class Partner
         }
     }
 
-    public Order envie () throws Exception
+    public String envie () throws Exception
     {
         try
         {
-            if (this.proximoOrder ==null) this.proximoOrder = (Order)this.receptor.readObject();
-            Order ret         = this.proximoOrder;
-            this.proximoOrder = null;
+            if (this.currentOrder ==null) this.currentOrder = this.receptor.readLine();
+            String ret         = this.currentOrder;
+            this.currentOrder = null;
             return ret;
         }
         catch (Exception erro)
         {
-            throw new Exception ("Erro de recepcao");
+            throw new Exception ("Erro de recepcao" + erro.getMessage());
         }
     }
 
