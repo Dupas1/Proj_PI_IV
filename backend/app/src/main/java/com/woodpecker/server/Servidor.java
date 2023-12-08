@@ -30,7 +30,7 @@ public class Servidor
         {
             aceitadoraDeConexao =
                     new AceitadoraDeConexao (porta, usuarios);
-            aceitadoraDeConexao.run();
+            aceitadoraDeConexao.start();
         }
         catch (Exception erro)
         {

@@ -5,6 +5,9 @@ import java.net.*;
 import java.time.LocalDate;
 import java.util.*;
 import  com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.woodpecker.LocalDateAdapter;
+
 public class SupervisoraDeConexao extends Thread
 {
     private Partner usuario;
@@ -69,7 +72,9 @@ public class SupervisoraDeConexao extends Thread
         catch (Exception erro)
         {} // sei que passei os parametros corretos
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
 
         try
         {

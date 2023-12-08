@@ -1,6 +1,8 @@
 package com.woodpecker.backend.service;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.woodpecker.LocalDateAdapter;
 import com.woodpecker.backend.dtos.CalculationReviewOrder;
 import com.woodpecker.backend.dtos.ExitOrder;
 import com.woodpecker.backend.dtos.Order;
@@ -33,7 +35,9 @@ public class ReviewService {
 
     public ResultReview calculateReview(String difficulty, int numberReview) throws Exception{
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
 
         try{
             server.receba(gson.toJson(new CalculationReviewOrder(difficulty,numberReview)));

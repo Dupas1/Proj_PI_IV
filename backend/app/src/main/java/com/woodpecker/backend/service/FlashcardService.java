@@ -50,6 +50,7 @@ public class FlashcardService {
         ResultReview resultReview = reviewService.calculateReview(request.getDifficulty(),request.getNumberReview());
         flashCard.get().setTimeSkip(resultReview.getFinalDate());
         flashCard.get().setNumberReview(resultReview.getNumberReview());
+        flashCard.get().setDifficulty(request.getDifficulty());
 
         return createResponse(flashCard.get());
     }
