@@ -2,7 +2,7 @@ import { useState } from "react";
 import api from "../../../services/api";
 const PopupQuiz = ({ open, handleClose, flashcard }) => {
   const [showAnswer, setShowAnswer] = useState(false);
-  const [dificuldade, setDificuldade] = useState("easy");
+  const [dificuldade, setDificuldade] = useState("EASY");
 
   const handleChange = (e) => {
     setDificuldade(e.target.value);
@@ -11,7 +11,8 @@ const PopupQuiz = ({ open, handleClose, flashcard }) => {
 
   const updateDificuldade = async () => {
     try {
-        const response = await api.put(`/flashcards/${flashcard.id}`, {dificuldade});
+        const url = `/flascard/review/${flashcard.id}`
+        const response = await api.put(url, {difficulty:dificuldade});
         console.log(response);
     } catch (error) {
         console.log(error);
@@ -85,9 +86,9 @@ const PopupQuiz = ({ open, handleClose, flashcard }) => {
                     cursor: "pointer"
                 }}
             >
-                <option value="easy">Fácil</option>
-                <option value="medium">Médio</option>
-                <option value="hard">Difícil</option>
+                <option value="EASY">Fácil</option>
+                <option value="MEDIUM">Médio</option>
+                <option value="HARD">Difícil</option>
             </select>
             <button onClick={handleClose}>Fechar</button>
         </div>
