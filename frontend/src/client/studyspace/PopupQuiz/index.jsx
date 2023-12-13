@@ -4,6 +4,7 @@ const PopupQuiz = ({ open, handleClose, flashcard }) => {
   const [showAnswer, setShowAnswer] = useState(false);
   const [dificuldade, setDificuldade] = useState("EASY");
 
+
   const handleChange = (e) => {
     setDificuldade(e.target.value);
     updateDificuldade();
@@ -11,8 +12,12 @@ const PopupQuiz = ({ open, handleClose, flashcard }) => {
 
   const updateDificuldade = async () => {
     try {
-        const url = `/flascard/review/${flashcard.id}`
-        const response = await api.put(url, {difficulty:dificuldade});
+      const categoryID = sessionStorage.getItem("uid");
+      console.log(categoryID);
+      
+        const url = `/flascard/review/${flashcard.id}`;
+        const timeSkip = new Date().toISOString();
+        const response = await api.put(url, {timeSkip, question:flashcard.question, difficulty:dificuldade, answer:flashcard.answer, categoryID });
         console.log(response);
     } catch (error) {
         console.log(error);

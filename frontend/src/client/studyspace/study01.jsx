@@ -13,6 +13,7 @@ const Studyspace = () => {
 
     const getFlashCards = async () => {
         try {
+
             const uid = sessionStorage.getItem("uid");
             console.log(uid);
             if (uid == null) window.location.href = "/login";
