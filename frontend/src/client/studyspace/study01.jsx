@@ -16,6 +16,21 @@ const Studyspace = () => {
             const uid = sessionStorage.getItem("uid");
             console.log(uid);
             if (uid == null) window.location.href = "/login";
+
+            /* 
+            const resCategoriesIds = await api.get(`/category/${uid}`);
+
+            const categoriesIds=[];
+            for (const category of resCategoriesIds.data) categoriesIds.push(category.id)
+
+            const flashcardsArray = []
+            for (const id of categoriesIds) {
+                let res = await api.get(`/flashcard/${id}`);
+                for (const flashcard of res.data) flashcardsArray.push(flashcard)
+            } 
+            setFlashCards(flashcardsArray);
+            */
+
             const response = await api.get(`/flashcard`);
             console.log("flashcardsss", response.data);
             setFlashCards(response.data);
@@ -118,7 +133,9 @@ const Studyspace = () => {
                 </div>
                 <div className='tudoquizzes'>
                     <div className='quizzestitulo'>Quizzes</div>
-                    <div className="quizzes-tests-wrapper">
+                    <div className="quizzes-tests-wrapper" style={{
+                        overflowX: "scroll"
+                    }}>
                         {
                             flashcards.length > 0 &&
                             flashcards.map((flashcard, index) => (

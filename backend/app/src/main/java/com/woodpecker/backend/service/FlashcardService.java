@@ -52,6 +52,7 @@ public class FlashcardService {
         flashCard.get().setNumberReview(resultReview.getNumberReview());
         flashCard.get().setDifficulty(request.getDifficulty());
 
+        repository.save(flashCard.get());
         return createResponse(flashCard.get());
     }
 

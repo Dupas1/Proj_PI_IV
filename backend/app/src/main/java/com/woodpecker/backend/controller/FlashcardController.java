@@ -53,13 +53,13 @@ public class FlashcardController {
         return ResponseEntity.ok(service.getAll());
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.GET)
+ /*    @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public ResponseEntity<FlashCard> findById(@PathVariable String id){
 
         FlashCard obj = service.findById(id);
 
         return ResponseEntity.ok().body(obj);
-    }
+    } */
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateByUser(@PathVariable String id, @Valid @RequestBody FlashcardRequest request, BindingResult bindingResult){

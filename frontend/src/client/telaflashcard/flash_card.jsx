@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Popup from './popup'; // Importando o componente Popu
+import Popup from './popup';
 import './flash_card.css';
 import { useParams } from 'react-router-dom';
 import api from '../../services/api';
@@ -30,6 +30,8 @@ export default function FlashCard() {
     };
 
     const getFlashCards = async() => {
+        console.log("chamando lista de flashcard")
+        console.log(params.categoryId);
         const response = await api.get(`/flashcard/${params.categoryId}`);
         console.log("Flashcards list",response.data);
         setFlashCards(response.data);
